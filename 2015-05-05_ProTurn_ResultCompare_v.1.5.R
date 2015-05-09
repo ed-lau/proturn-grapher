@@ -1,22 +1,20 @@
 ############# INSTRUCTIONS #############
-#Note: Reads in the ProTurn output files AFTER analysis by ProTurn Grapher, because it corrects the dk value from ProTurn output.
-#If using old version of ProTurn (before 2.0.0.5) hl.txt and hl-data.txt in Excel, remove the non-peptides in hl.txt, fill all the holes, find gene names, and label the
-#following columns: ID, Uniprot, GN, Peptide, DP, Charge, Isotopomer, SS (Sums of squares), a, pss, kp, N, k, and R2; ID, Time and A0.
-# kp, pss, N and a. N is from Commerford and must be rounded.
+#Note: Reads in the ProTurn output files AFTER analysis by ProTurn Grapher (without reoptimization).
+# ProTurn Grapher is necessary because it corrects the dk value from ProTurn output.
 ########################################
 
 
 ############## USER INPUT ##############
-R2_threshold <- 0.81                                                    # R2 threshold to further filter out some peptides from Grapher output
-SS_threshold <- 0.1                                                     # Standard error threshold to further filter out some peptides from Grapher output
+#R2_threshold <- 0.81             # R2 threshold to further filter out some peptides from Grapher output
+#SE_threshold <- 0.1              # Standard error threshold to further filter out some peptides from Grapher output
 
-home_directory <- "~/Documents/Ping Lab/Heavy Water/ProTurn Output/"     # Working directory
+home_directory <- "~/Documents/Ping Lab/R Projects/proturn-grapher/"     # Working directory
 dataset1.directory <- "test1/"                              # The Proturn grapher output file for dataset 1, e.g., control hearts
 dataset2.directory <- "test2/"                              # The Proturn grapher output file for dataset 2, e.g., iso hearts
 
 comparison_output <- "ProTurn_Compare.txt"                              # Name of the result file.
 # Load annotation files
-annotation.location <- "Annotation file/10090_annotations.csv"      # Annotation file
+annotation.location <- "~/Documents/Ping Lab/Heavy Water/ProTurn Output/Annotation file/10090_annotations.csv"      # Annotation file
 
 #################################################
 

@@ -9,11 +9,12 @@
 R2_threshold <- 0.81    # R2 Threshold
 SE_threshold <- 0.1     # Standard Error of Estimate Threshold
 
-home_directory <- "~/Documents/Ping Lab/Heavy Water/ProTurn Output/test1"
+home_directory <- "~/Documents/Ping Lab/R Projects/proturn-grapher/test_refit"
 hl.out_location <- "hl.out"
 hl.data.out_location <- "hl-data.out"
 output_file <- "ProTurn_Output.txt"
-Refit <- TRUE           # Should the Grapher attempt to combine all peptides and refit the kinetic curve.
+
+Refit <- FALSE           # Should the Grapher attempt to combine all peptides and refit the kinetic curve.
 
 annotation.location <- "~/Documents/Ping Lab/Heavy Water/ProTurn Output/Annotation file/10090_annotations.csv"
 ########################################
@@ -136,28 +137,29 @@ Rescaled_LowerModel <-function(x){
 Refitting_Function <- function(ki){
         current_k <<- ki                # May have to set the current k from within the function as a global parameter for use in the Core function.
         Refitting_Predicted <- sapply(ds$t,Refitting_Function_Core)
-        Refitting_R2 <- 1- (sum((ds$A0-Refitting_Predicted)^2))/(sum((ds$A0-mean(ds$A0))^2))
+        Refitting_R2 <- 1- (sum((ds$FS-Refitting_Predicted)^2))/(sum((ds$FS-mean(ds$FS))^2))
         return(1-Refitting_R2)
 }
 
 ## This is the core function for reoptimization with KL - given a k and and t, plot out the predicted A0
 Refitting_Function_Core <-function(x){
         z <- 0
-        for (n in 0:dt$N[c]) {
-                
-                N <- dt$N[c]
-                kp <- dt$kp[c]
-                pss <- dt$pss[c]
-                a <- dt$a[c]
-                
+        N <- dt$N[c]
+        kp <- dt$kp[c]
+        pss <- dt$pss[c]
+        a <- dt$a[c]
+        for (n in 0:N) {
+      
                 b <- factorial(N)/(factorial(n)*factorial(N-n))*(1-pss)^(N-n)*(pss)^n
                 bp <- (current_k/(current_k-n*kp))*b
                 y<- a*(bp*exp(-n*kp*x)+exp(-current_k*x)*(1/(N+1)-bp))                                                                  
+
+                y<- (bp*exp(-n*kp*x)+exp(-current_k*x)*(1/(N+1)-bp))
                 z <- y + z}
-        return(z)
-}
-
-
+                final <- (z-1)/((1-pss)^N-1)
+                return(final)
+                }
+        
 
 # This function takes in time information and returns the KL equation y value using the now optimized k
 Refitted_Model <-function(x){
