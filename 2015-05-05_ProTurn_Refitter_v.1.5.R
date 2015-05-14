@@ -37,27 +37,20 @@ hl.out <- cbind(hl.out,SE)
 rm(SE)
 # Subsetting the hl.out table to house only those peptides that pass the threshold
 dt <- hl.out[ which(hl.out$R2 >= R2_threshold | hl.out$SE <= SE_threshold),] # Subsetting by R2 and SS
-FS <- 1:nrow(dt)
-dt <- cbind(dt,FS)
+#FS <- 1:nrow(dt)
+#dt <- cbind(dt,FS)
 
 ########################################
 
 ############## FUNCTIONS ##############
 # This function calcualtes dk from the solution for partial derivatives dA/dk ; dA is SS.
-Calculate_dk <-function(x){
-        z <- 0
-        for (n in 0:dt$N[c]) {
-                b <- factorial(dt$N[c])/(factorial(n)*factorial(dt$N[c]-n))*(1-dt$pss[c])^(dt$N[c]-n)*(dt$pss[c])^n
-                bp <- (dt$k[c]/(dt$k[c]-n*dt$kp[c]))*b
-                y<- dt$a[c]*((n*dt$kp[c])/(dt$k[c]*(dt$k[c]-n*dt$kp[c]))*bp*(exp(-dt$k[c]*x)-exp(-n*dt$kp[c]*x))-x*(1/(dt$N[c]+1)-bp)*exp(-dt$k[c]*x))                                                              
-                z <- y + z}
-        return(dt$SS[c]/z)}
+
 
 Refit_Calculate_FS <- function(x){
         
-        a <- dt[which(dt$ID == ds$ID[i]),8]
-        pss <- dt[which(dt$ID == ds$ID[i]),9]
-        N <- dt[which(dt$ID == ds$ID[i]),11]
+        a <- dt[which(dt$ID == ds$ID[i]),"a"]
+        pss <- dt[which(dt$ID == ds$ID[i]),"pss"]
+        N <- dt[which(dt$ID == ds$ID[i]),"N"]
         
         Ainf. <- a*(1-pss)^N
         FS. <- (x-a)/(Ainf.-a)
@@ -109,6 +102,22 @@ Refitting_Function_Core <-function(x){
                 }
         
 
+
+Calculate_Refitted_dk <-function(x){
+        z <- 0
+        N <- mean(all_peptides_of_protein$N)
+        kp <- mean(all_peptides_of_protein$kp)
+        pss <- mean(all_peptides_of_protein$pss)
+        
+        for (n in 0:N) {
+                b <- factorial(N)/(factorial(n)*factorial(N-n))*(1-pss)^(N-n)*(pss)^n
+                bp <- (Optimize$minimum/(Optimize$minimum-n*kp))*b
+                y<- ((n*kp)/(Optimize$minimum*(Optimize$minimum-n*kp))*bp*(exp(-Optimize$minimum*x)-exp(-n*kp*x))-x*(1/(N+1)-bp)*exp(-Optimize$minimum*x))                                                              
+                z <- y + z}
+        dA.over.dk <- (z-1)/((1-pss)^N-1)
+        dk <- Refitted_SS/dA.over.dk
+        return(dk)}
+
 # This function takes in time information and returns the KL equation y value using the now optimized k
 Refitted_Model <-function(x){
         z <- 0
@@ -124,6 +133,36 @@ Refitted_Model <-function(x){
         zz <- (z-1)/((1-pss)^N-1)
         return(zz)
         }
+
+Refitted_UpperModel <-function(x){
+        z <- 0
+        N <- mean(all_peptides_of_protein$N)
+        kp <- mean(all_peptides_of_protein$kp)
+        pss <- mean(all_peptides_of_protein$pss)
+        
+        for (n in 0:N) {
+                b <- factorial(N)/(factorial(n)*factorial(N-n))*(1-pss)^(N-n)*(pss)^n
+                bp <- (Refitted_Upper/(Refitted_Upper-n*kp))*b
+                y<- (bp*exp(-n*kp*x)+exp(-Refitted_Upper*x)*(1/(N+1)-bp))                                                                  
+                z <- y + z}
+        zz <- (z-1)/((1-pss)^N-1)
+        return(zz)
+}
+
+Refitted_LowerModel <-function(x){
+        z <- 0
+        N <- mean(all_peptides_of_protein$N)
+        kp <- mean(all_peptides_of_protein$kp)
+        pss <- mean(all_peptides_of_protein$pss)
+        
+        for (n in 0:N) {
+                b <- factorial(N)/(factorial(n)*factorial(N-n))*(1-pss)^(N-n)*(pss)^n
+                bp <- (Refitted_Lower/(Refitted_Lower-n*kp))*b
+                y<- (bp*exp(-n*kp*x)+exp(-Refitted_Lower*x)*(1/(N+1)-bp))                                                                  
+                z <- y + z}
+        zz <- (z-1)/((1-pss)^N-1)
+        return(zz)
+}
 
 ########################################
 
@@ -161,7 +200,13 @@ for (c in 1:35){
                 
                 Refitted_Predicted <- sapply(ds$t,Refitted_Model)
                 Refitted_R2 <- 1- (sum((ds$FS-Refitted_Predicted)^2))/(sum((ds$FS-mean(ds$FS))^2))
+                Refitted_SS <- sum((ds$FS-Refitted_Predicted)^2)
                 Refitted_SD <- (mean((ds$FS-Refitted_Predicted)^2))^0.5
+                
+                dk <- min(abs(sapply(ds$t,Calculate_Refitted_dk)))
+                
+                Refitted_Upper <- Optimize$minimum + dk
+                Refitted_Lower <- Optimize$minimum^2/(Optimize$minimum+dk)
                 
                 print(protein_list[c])
                 print(Optimize$minimum)
@@ -181,10 +226,10 @@ for (c in 1:35){
                         "Time(days)"), side=1, line=1, cex=0.4);
                 
                 curve(Refitted_Model(x), from=0, to=max(dp$t), col="red", add=TRUE)
-                #curve(UpperModel(x), from=0, to=max(dp$t), col=rgb(100,0,0,50,maxColorValue=255), add=TRUE)
-                #curve(LowerModel(x), from=0, to=max(dp$t), col=rgb(100,0,0,50,maxColorValue=255), add=TRUE)
+                curve(Refitted_UpperModel(x), from=0, to=max(dp$t), col=rgb(100,0,0,50,maxColorValue=255), add=TRUE)
+                curve(Refitted_LowerModel(x), from=0, to=max(dp$t), col=rgb(100,0,0,50,maxColorValue=255), add=TRUE)
                 
-                oput <- paste(protein_list[c],nrow(all_peptides_of_protein), Optimize$par, Refitted_R2, sep = "\t")
+                oput <- paste(protein_list[c],nrow(all_peptides_of_protein), Optimize$minimum, Refitted_R2, sep = "\t")
                 
                 write(oput, file=output_file, append=T)
         }     

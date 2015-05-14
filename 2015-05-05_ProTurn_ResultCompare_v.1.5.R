@@ -8,15 +8,21 @@
 #R2_threshold <- 0.81             # R2 threshold to further filter out some peptides from Grapher output
 #SE_threshold <- 0.1              # Standard error threshold to further filter out some peptides from Grapher output
 
-home_directory <- "~/Documents/Ping Lab/R Projects/proturn-grapher/"     # Working directory
-dataset1.directory <- "test1/"                              # The Proturn grapher output file for dataset 1, e.g., control hearts
-dataset2.directory <- "test2/"                              # The Proturn grapher output file for dataset 2, e.g., iso hearts
+#home_directory <- "~/Documents/Ping Lab/R Projects/proturn-grapher/"     # Working directory. Need back slach "/" at the end
+home_directory <- "~/Documents/Ping Lab/Project Files/2015 Paraquat Turnover/" # Working directory. Need back slach "/" at the end
 
-comparison_output <- "ProTurn_Compare.txt"                              # Name of the result file.
+dataset1.directory <- "1. Vehicle Mito/"                              # The Proturn grapher output file for dataset 1, e.g., control hearts
+dataset2.directory <- "2. Paraquat Mito/"                              # The Proturn grapher output file for dataset 2, e.g., iso hearts
+
+comparison_output <- "ProTurn_Compare.txt"                              # Name of the result file (comparing two proteins)
+peptide_comparison_output <- "ProTurn_Peptide_Compare.txt"              # Name of the peptide result file (comparing each common peptide for all proteins)
 # Load annotation files
 annotation.location <- "~/Documents/Ping Lab/Heavy Water/ProTurn Output/Annotation file/10090_annotations.csv"      # Annotation file
 
 #################################################
+
+############ LOAD LIBRARIES ###############
+require("BSDA")
 
 ############ LOAD INDIVIDUAL PEPTIDE OUTPUT FILES ###############
 setwd(home_directory)
@@ -45,27 +51,11 @@ summary <- paste(
         "ratio", "Wilcoxon.test", "T test",
         sep = "\t")
 write(summary, file=comparison_output, append=T)
+
 ################################################
 
 ############## FUNCTIONS ##############
 # This function calcualtes dk from the solution for partial derivatives dA/dk ; dA is SS.
-Calculate_dk <-function(x){
-        z <- 0
-        for (n in 0:dt$N[c]) {
-                b <- factorial(dt$N[c])/(factorial(n)*factorial(dt$N[c]-n))*(1-dt$pss[c])^(dt$N[c]-n)*(dt$pss[c])^n
-                bp <- (dt$k[c]/(dt$k[c]-n*dt$kp[c]))*b
-                y<- dt$a[c]*((n*dt$kp[c])/(dt$k[c]*(dt$k[c]-n*dt$kp[c]))*bp*(exp(-dt$k[c]*x)-exp(-n*dt$kp[c]*x))-x*(1/(dt$N[c]+1)-bp)*exp(-dt$k[c]*x))                                                              
-                z <- y + z}
-        return(dt$SS[c]/z)}
-
-Calculate_FS <- function(x){
-        A0. <- dt$a[c]
-        Ainf. <- dt$a[c]*(1-dt$pss[c])^dt$N[c]
-        FS. <- (x-A0.)/(Ainf.-A0.)
-        return(FS.)
-}
-
-# This is the normal KL function, which we will use to visualize the Proturn output k.
 
 # This is the normal KL function, which we will use to visualize the Proturn output k.
 Rescaled_Model <-function(x){
@@ -84,13 +74,24 @@ Rescaled_Model <-function(x){
         return(final)
 }
 
+Calculate_FS <- function(x){
+        A0. <- subset$a[j]
+        Ainf. <- subset$a[j]*(1-subset$pss[j])^subset$N[j]
+        FS. <- (x-A0.)/(Ainf.-A0.)
+        return(FS.)
+}
+
 ########################################
 
 ######### GRAPHICAL OUTPUT PARAMETERS ##########
 pdf(file="Proturn_fit.pdf")
 par(mfrow=c(5,4), mar=c(2.2,2.2,2,2))
 ################################################
+
+
+################## MAIN LOOP (PROTEIN OUTPUT) ####################
 #Loop through all Uniprot IDs in the protein list, and extract all the peptides from either result files that belong to the protein.
+#for (i in 6){
 for (i in 1:nrow(protein.list)) {
         
         print(paste("Now running Protein # ", i, " of ", nrow(protein.list), ". ", round(i/nrow(protein.list)*100,2), "% done."))
@@ -116,9 +117,9 @@ for (i in 1:nrow(protein.list)) {
         protein.cv.2 <- protein.mad.2/protein.median.2
         
         # Calculate protein ratio
-        
         protein.ratio <- protein.median.2/protein.median.1
 
+        # Annotate gene name and protien name
         GN <- annot[ which(annot$Uniprot == protein.list[i]),5]
         PN <- annot[ which(annot$Uniprot == protein.list[i]),3]
         
@@ -127,26 +128,42 @@ for (i in 1:nrow(protein.list)) {
                 Utest <- wilcox.test(subset.output.1$k, subset.output.2$k)
                 Ttest <- t.test(subset.output.1$k, subset.output.2$k)
         }
-        else{
-                Utest <- wilcox.test(1:3,1:3)
-                Ttest <- t.test(1:3,1:3)
-        }
+        else { Utest <- wilcox.test(1:3,1:3); Ttest <- t.test(1:3,1:3)} # Dummy values with P values of 1 if there are less than 3 peptides.
         
         # Create an empty plot
-        plot(-2, -2, xlab="Time", ylab="FS", ylim=c(-0.1,1.1), xlim=c(0,15), cex=0.8, cex.axis=0.6, cex.lab=0.6, pch=16, ps=28, lwd=2, lty=1, mgp=c(1.55,0.48,0), las=1, add=TRUE)
+        plot(-2, -2, xlab="Time", ylab="FS", ylim=c(-0.1,1.1), xlim=c(0,15), cex=0.8, cex.axis=0.6, cex.lab=0.6, pch=16, ps=28, lwd=2, lty=1, mgp=c(1.55,0.48,0), las=1)
         mtext(protein.list[i],side = 3, line = 0.5, cex=0.4);
-        # Plot the turnover graphs for comparison (no data points yet as that require the hl-data.out file)
-        for(j in 1:nrow(subset.output.1)){
-                subset <- subset.output.1
-                if (nrow(subset) > 0){
-                        curve(Rescaled_Model(x), from=0, to=15, col="red", add=TRUE)
-                        }
-        }
         
-        for(j in 1:nrow(subset.output.2)){
+        # Plot the turnover graphs (kinetic curve and data points for file 1 and file 2) for comparison
+        
+        # For file 1:
+        if (nrow(subset.output.1) > 0) {
+                subset <- subset.output.1
+                for(j in 1:nrow(subset.output.1)) {
+                        # Plot out each fitted kinetic curve
+                        curve(Rescaled_Model(x), from=0, to=15, col="red", add=TRUE)
+                        # Find all the data points linked to the peptide IDs in the protein being considered
+                        hl.data.peptide.subset <- hl.data.1[ which(hl.data.1$ID == subset$ID[j]),1:3]
+                        # Calculate their fractional synthesis
+                        FS <- sapply(hl.data.peptide.subset$A0, Calculate_FS)
+                        hl.data.peptide.subset <- cbind(hl.data.peptide.subset,FS)
+                        # Plot out all data points
+                        points(hl.data.peptide.subset$t,hl.data.peptide.subset$FS, col="red", ylim=c(-0.1,1.1), xlim=c(0,15), cex=0.8)      
+                }
+        }
+        # For file 2:
+        if (nrow(subset.output.2) > 0) {
                 subset <- subset.output.2
-                if (nrow(subset) > 0) {
-                curve(Rescaled_Model(x), from=0, to=15, col="blue", add=TRUE)
+                for(j in 1:nrow(subset.output.2)){
+                        # Plot out each fitted kinetic curve
+                        curve(Rescaled_Model(x), from=0, to=15, col="blue", add=TRUE)
+                        # Find all the data points linked to the peptide IDs in the protein being considered
+                        hl.data.peptide.subset <- hl.data.2[ which(hl.data.2$ID == subset$ID[j]),1:3]
+                        # Calculate their fractional synthesis
+                        FS <- sapply(hl.data.peptide.subset$A0, Calculate_FS)
+                        hl.data.peptide.subset <- cbind(hl.data.peptide.subset,FS)
+                        # Plot out all data points
+                        points(hl.data.peptide.subset$t,hl.data.peptide.subset$FS, col="blue", ylim=c(-0.1,1.1), xlim=c(0,15), cex=0.8)
                 }
         }
         
@@ -154,10 +171,81 @@ for (i in 1:nrow(protein.list)) {
         summary <- paste(protein.list[i], GN, PN, 
                          nrow(subset.output.1), protein.median.1, protein.mad.1, protein.cv.1, 
                          nrow(subset.output.2), protein.median.2, protein.mad.2, protein.cv.2, 
-                         Utest$p.value, Ttest$p.value,
+                         protein.ratio, Utest$p.value, Ttest$p.value,
                          sep = "\t")
         write(summary, file=comparison_output, append=T)
         }
 
 # Close graphical stream
-dev.off()########################################
+dev.off()
+
+########################################
+
+################ PEPTIDE COMPARISON OUTPUT ####################
+
+peptide_summary <- paste(
+        "Protein name", "GN", "PN", "Peptide", "Charge",
+        "k.1","k.2","Peptide ratio", "Welch's t test P value",
+        sep = "\t")
+write(peptide_summary, file=peptide_comparison_output, append=T)
+
+for (i in 1:nrow(protein.list)) {
+        
+        print(paste("Now running Protein # ", i, " of ", nrow(protein.list), ". ", round(i/nrow(protein.list)*100,2), "% done."))
+        subset.output.1 <- peptide.output.1[ which(peptide.output.1$Uniprot == protein.list[i]), ]
+        subset.output.2 <- peptide.output.2[ which(peptide.output.2$Uniprot == protein.list[i]), ]
+        
+        # Annotate gene name and protien name
+        GN <- annot[ which(annot$Uniprot == protein.list[i]),5]
+        PN <- annot[ which(annot$Uniprot == protein.list[i]),3]
+        
+        # Add a new column which concatenates peptide and charge to become a unique identifier for peptide        
+        if (nrow(subset.output.1) > 0) {
+                subset.output.1$concat <- NA
+                for (j in 1:nrow(subset.output.1)){
+                        subset.output.1$concat[j] <- paste(subset.output.1$Peptide[j],subset.output.1$z[j], sep="")
+                }
+        }
+        
+        if (nrow(subset.output.2) > 0) {
+                subset.output.2$concat <- NA
+                for (j in 1:nrow(subset.output.2)){
+                        subset.output.2$concat[j] <- paste(subset.output.2$Peptide[j],subset.output.2$z[j], sep="")
+                }
+        }
+        
+        if (nrow(subset.output.1) > 0 & nrow(subset.output.2) >0 ) {
+        # Subset out the list of common peptides from subset.output.1
+        common.peptides.1 <- subset.output.1[ which(subset.output.1$concat %in% subset.output.2$concat), ]
+        common.peptides.1 <- common.peptides.1[order(common.peptides.1$concat),]
+        colnames(common.peptides.1) <- paste(colnames(common.peptides.1),".1",sep="")
+        # Subset out the list of common peptides from subset.output.2
+        common.peptides.2 <- subset.output.2[ which(subset.output.2$concat %in% subset.output.1$concat), ]
+        common.peptides.2 <- common.peptides.2[order(common.peptides.2$concat),]
+        colnames(common.peptides.2) <- paste(colnames(common.peptides.2),".2",sep="")
+        
+        # Combine the two tables into one!
+        common.peptides <- cbind(common.peptides.1,common.peptides.2)
+        # Calculate ratios
+        common.peptides$ratio <- common.peptides$k.2/common.peptides$k.1
+                
+        
+                # Calculate the Welch's t test ratio for each peptide pair
+                if  (nrow(common.peptides) > 0){
+                for (j in 1:nrow(common.peptides)){
+                        
+                        # This is a function from the BSDA package
+                        welch.t <- tsum.test(mean.x=common.peptides$k.1[j],   s.x=common.peptides$dk.1[j], n.x=common.peptides$DP.1[j],
+                                  mean.y=common.peptides$k.2[j], s.y=common.peptides$dk.2[j], n.y=common.peptides$DP.2[j])
+                        
+                        # Write out individual peptide ratios and p value
+                        peptide_summary <- paste(protein.list[i], GN, PN,
+                                                common.peptides$Peptide.1[j],common.peptides$z.1[j],
+                                                common.peptides$k.1[j],common.peptides$k.2[j],
+                                                common.peptides$ratio[j], welch.t$p.value,
+                                                sep = "\t")
+                        write(peptide_summary, file=peptide_comparison_output, append=T)
+                 }
+                }
+        }
+}
