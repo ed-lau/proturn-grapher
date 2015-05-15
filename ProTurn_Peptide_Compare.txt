@@ -1,0 +1,262 @@
+Protein name	GN	PN	Protein length	Peptide	Charge	Position	k.1	k.2	Peptide ratio	Welch's t test P value
+Protein name	GN	PN	Protein length	Peptide	Charge	Position	k.1	k.2	Peptide ratio	Welch's t test P value
+Protein name	GN	PN	Protein length	Peptide	Charge	Position	k.1	k.2	Peptide ratio	Welch's t test P value
+Protein name	GN	PN	Protein length	Peptide	Charge	Position	k.1	k.2	Peptide ratio	Welch's t test P value
+Q91VJ4	Stk38	Serine/threonine-protein kinase 38 (EC 2.7.11.1) (NDR1 protein kinase) (Nuclear Dbf2-related kinase 1)	465	LGLEDFESLK	2	84	0.232	0.235	1.01293103448276	0.913174537835214
+Q91VJ2	Prkcdbp	Protein kinase C delta-binding protein (Cavin-3) (Serum deprivation response factor-related gene product that binds to C-kinase)	260	EDPEKPVLQIESAA	2	247	0.087	0.096	1.10344827586207	0.485201357653972
+Q91VJ2	Prkcdbp	Protein kinase C delta-binding protein (Cavin-3) (Serum deprivation response factor-related gene product that binds to C-kinase)	260	RIQSGLGALSR	2	59	0.029	0.058	2	0.226846893300918
+P61759	Vbp1	Prefoldin subunit 3 (Von Hippel-Lindau-binding protein 1) (VBP-1) (VHL-binding protein 1)	196	DQFTTTEVNMAR	2	166	0.135	0.148	1.0962962962963	0.744981528983551
+P61759	Vbp1	Prefoldin subunit 3 (Von Hippel-Lindau-binding protein 1) (VBP-1) (VHL-binding protein 1)	196	NLDSLEEDLDFLR	2	153	0.157	0.178	1.13375796178344	0.587304325279524
+P61750	Arf4	ADP-ribosylation factor 4	180	IQEGAAVLQK	2	100	0.351	0.387	1.1025641025641	0.650210950324587
+Q9WTR5	Cdh13	Cadherin-13 (Heart cadherin) (H-cadherin) (Truncated cadherin) (T-cad) (T-cadherin)	714	DIQGSLQDIFK	2	116	0.108	0.139	1.28703703703704	0.249098684330928
+Q9WTR5	Cdh13	Cadherin-13 (Heart cadherin) (H-cadherin) (Truncated cadherin) (T-cad) (T-cadherin)	714	INENTGSVSVTR	2	190	0.025	0.042	1.68	0.00475655748663562
+Q9WTR5	Cdh13	Cadherin-13 (Heart cadherin) (H-cadherin) (Truncated cadherin) (T-cad) (T-cadherin)	714	INENTGSVSVTR	2	190	0.03	0.06	2	0.000599805378725492
+Q9WTR5	Cdh13	Cadherin-13 (Heart cadherin) (H-cadherin) (Truncated cadherin) (T-cad) (T-cadherin)	714	M(15.9949)TAFDADDPATDNALLR	2	267	0.05	0.062	1.24	0.0740627827647766
+Q9WTR5	Cdh13	Cadherin-13 (Heart cadherin) (H-cadherin) (Truncated cadherin) (T-cad) (T-cadherin)	714	SIVVSPILIPENQR	2	139	0.038	0.053	1.39473684210526	0.150148649018531
+Q9WTR5	Cdh13	Cadherin-13 (Heart cadherin) (H-cadherin) (Truncated cadherin) (T-cad) (T-cadherin)	714	SIVVSPILIPENQR	2	139	0.029	0.053	1.82758620689655	0.0014531399799857
+Q9WTR5	Cdh13	Cadherin-13 (Heart cadherin) (H-cadherin) (Truncated cadherin) (T-cad) (T-cadherin)	714	SIVVSPILIPENQR	3	139	0.025	0.033	1.32	0.323693743418408
+Q8K215	Lyrm4	LYR motif-containing protein 4	91	DPVEIQALVNK	2	48	0.022	0.035	1.59090909090909	0.00441824571789746
+Q8K215	Lyrm4	LYR motif-containing protein 4	91	NVKDPVEIQALVNK	2	45	0.026	0.024	0.923076923076923	0.749874800177358
+Q8K215	Lyrm4	LYR motif-containing protein 4	91	NVKDPVEIQALVNK	2	45	0.028	0.047	1.67857142857143	0.00701226432245168
+Q8K215	Lyrm4	LYR motif-containing protein 4	91	NVKDPVEIQALVNK	3	45	0.027	0.042	1.55555555555556	0.000621616287464416
+Q8K215	Lyrm4	LYR motif-containing protein 4	91	QVHIGQLYSTDK	3	69	0.028	0.043	1.53571428571429	0.0439536747049232
+Q62188	Dpysl3	Dihydropyrimidinase-related protein 3 (DRP-3) (Unc-33-like phosphoprotein 1) (ULIP-1)	570	AITVASQTNCPLYVTK	2	239	0.082	0.109	1.32926829268293	0.365488374540315
+Q62188	Dpysl3	Dihydropyrimidinase-related protein 3 (DRP-3) (Unc-33-like phosphoprotein 1) (ULIP-1)	570	AITVASQTNCPLYVTK	2	239	0.04	0.17	4.25	0.000756142043940988
+Q62188	Dpysl3	Dihydropyrimidinase-related protein 3 (DRP-3) (Unc-33-like phosphoprotein 1) (ULIP-1)	570	GMTTVDDFFQGTK	2	82	0.106	0.201	1.89622641509434	0.0249319321372712
+Q62188	Dpysl3	Dihydropyrimidinase-related protein 3 (DRP-3) (Unc-33-like phosphoprotein 1) (ULIP-1)	570	IAVGSDSDLVIWDPDALK	2	401	0.101	0.18	1.78217821782178	0.00218548217383134
+Q62188	Dpysl3	Dihydropyrimidinase-related protein 3 (DRP-3) (Unc-33-like phosphoprotein 1) (ULIP-1)	570	NLHQSGFSLSGTQVDEGVR	2	532	0.093	0.154	1.65591397849462	0.212059030600747
+Q62188	Dpysl3	Dihydropyrimidinase-related protein 3 (DRP-3) (Unc-33-like phosphoprotein 1) (ULIP-1)	570	QIGDNLIVPGGVK	2	44	0.082	0.163	1.98780487804878	0.00502020084968575
+Q62188	Dpysl3	Dihydropyrimidinase-related protein 3 (DRP-3) (Unc-33-like phosphoprotein 1) (ULIP-1)	570	SAADLISQAR	2	259	0.083	0.154	1.85542168674699	0.0578422105696556
+Q8K212	Pacs1	Phosphofurin acidic cluster sorting protein 1 (PACS-1)	961	DTTSPMELAALEK	2	425	0.056	0.088	1.57142857142857	0.229916438025575
+Q8K212	Pacs1	Phosphofurin acidic cluster sorting protein 1 (PACS-1)	961	SEPPVSEPLDVVGR	2	694	0.211	0.218	1.03317535545024	0.858335711797072
+P55096	Abcd3	ATP-binding cassette sub-family D member 3 (68 kDa peroxisomal membrane protein) (PMP68) (70 kDa peroxisomal membrane protein) (PMP70)	659	GIEGAQASPLVPGAGEIINTDNIIK	3	417	0.132	0.122	0.924242424242424	0.73595399987386
+P55096	Abcd3	ATP-binding cassette sub-family D member 3 (68 kDa peroxisomal membrane protein) (PMP68) (70 kDa peroxisomal membrane protein) (PMP70)	659	GIEGAQASPLVPGAGEIINTDNIIK	3	417	0.093	0.164	1.76344086021505	0.0641014292084099
+P55096	Abcd3	ATP-binding cassette sub-family D member 3 (68 kDa peroxisomal membrane protein) (PMP68) (70 kDa peroxisomal membrane protein) (PMP70)	659	IANPDQLLTQDVEK	2	182	0.141	0.217	1.53900709219858	0.0264047060553177
+P55096	Abcd3	ATP-binding cassette sub-family D member 3 (68 kDa peroxisomal membrane protein) (PMP68) (70 kDa peroxisomal membrane protein) (PMP70)	659	IANPDQLLTQDVEK	2	182	0.117	0.133	1.13675213675214	0.777060905971477
+P55096	Abcd3	ATP-binding cassette sub-family D member 3 (68 kDa peroxisomal membrane protein) (PMP68) (70 kDa peroxisomal membrane protein) (PMP70)	659	VLGELWPLFGGR	2	485	0.08	0.124	1.55	0.0865269129921983
+P55096	Abcd3	ATP-binding cassette sub-family D member 3 (68 kDa peroxisomal membrane protein) (PMP68) (70 kDa peroxisomal membrane protein) (PMP70)	659	VLGELWPLFGGR	2	485	0.063	0.139	2.20634920634921	0.0368507076075591
+Q91VI7	Rnh1	Ribonuclease inhibitor (Ribonuclease/angiogenin inhibitor 1)	456	CKDISSAVQANPALTELSLR	3	40	0.111	0.231	2.08108108108108	0.000303250945631052
+Q91VI7	Rnh1	Ribonuclease inhibitor (Ribonuclease/angiogenin inhibitor 1)	456	DISSAVQANPALTELSLR	2	42	0.092	0.149	1.6195652173913	0.0952779847796114
+Q91VI7	Rnh1	Ribonuclease inhibitor (Ribonuclease/angiogenin inhibitor 1)	456	DISSAVQANPALTELSLR	3	42	0.107	0.167	1.5607476635514	6.25758438747206e-06
+Q91VI7	Rnh1	Ribonuclease inhibitor (Ribonuclease/angiogenin inhibitor 1)	456	ELDLSNNCM(15.9949)GGPGVLQLLESLK	3	397	0.119	0.186	1.56302521008403	0.159183876498777
+Q91VI7	Rnh1	Ribonuclease inhibitor (Ribonuclease/angiogenin inhibitor 1)	456	ELVLSNNDLHEPGVR	2	169	0.102	0.125	1.22549019607843	0.422741528162839
+Q91VI7	Rnh1	Ribonuclease inhibitor (Ribonuclease/angiogenin inhibitor 1)	456	ELWLGDCDVTNSGCSSLANVLLANR	3	369	0.159	0.185	1.16352201257862	0.3064230343117
+Q91VI7	Rnh1	Ribonuclease inhibitor (Ribonuclease/angiogenin inhibitor 1)	456	LGNAGIAALCPGLLLPSCK	2	234	0.102	0.171	1.67647058823529	0.000497710649310042
+Q91VI7	Rnh1	Ribonuclease inhibitor (Ribonuclease/angiogenin inhibitor 1)	456	LLCEGLQDPQCR	2	127	0.124	0.152	1.2258064516129	0.374030100430579
+Q91VI7	Rnh1	Ribonuclease inhibitor (Ribonuclease/angiogenin inhibitor 1)	456	SLLELQMSSNPLGDEGVQELCK	3	337	0.13	0.22	1.69230769230769	0.0303122647092209
+Q91VI7	Rnh1	Ribonuclease inhibitor (Ribonuclease/angiogenin inhibitor 1)	456	TCSLTAASCPYFCSVLTK	2	317	0.102	0.186	1.82352941176471	0.0104050431234253
+Q91VI7	Rnh1	Ribonuclease inhibitor (Ribonuclease/angiogenin inhibitor 1)	456	TNELGDGGVGLVLQGLQNPTCK	3	60	0.128	0.199	1.5546875	8.25031202201957e-05
+P08752	Gnai2	Guanine nucleotide-binding protein G(i) subunit alpha-2 (Adenylate cyclase-inhibiting G alpha protein)	355	EYQLNDSAAYYLNDLER	3	146	0.156	0.244	1.56410256410256	0.210461676841293
+P08752	Gnai2	Guanine nucleotide-binding protein G(i) subunit alpha-2 (Adenylate cyclase-inhibiting G alpha protein)	355	IAQSDYIPTQQDVLR	2	163	0.131	0.185	1.41221374045802	0.127198985490292
+P08752	Gnai2	Guanine nucleotide-binding protein G(i) subunit alpha-2 (Adenylate cyclase-inhibiting G alpha protein)	355	ITQSSLTICFPEYTGANK	2	279	0.092	0.16	1.73913043478261	0.33261678950276
+P08752	Gnai2	Guanine nucleotide-binding protein G(i) subunit alpha-2 (Adenylate cyclase-inhibiting G alpha protein)	355	LWADHGVQACFGR	2	131	0.09	0.147	1.63333333333333	0.214432028567309
+P08752	Gnai2	Guanine nucleotide-binding protein G(i) subunit alpha-2 (Adenylate cyclase-inhibiting G alpha protein)	355	LWADHGVQACFGR	3	131	0.111	0.158	1.42342342342342	0.11884083568819
+P08752	Gnai2	Guanine nucleotide-binding protein G(i) subunit alpha-2 (Adenylate cyclase-inhibiting G alpha protein)	355	LWADHGVQACFGR	3	131	0.074	0.216	2.91891891891892	0.020387174450966
+Q9WTQ8			209	NVQILNMVTR	2	113	0.009	0.172	19.1111111111111	0.00126949054568818
+Q9WTQ8			209	YLVQDTDEFILPTGANK	2	52	0.268	0.294	1.09701492537313	0.785577114803814
+Q9WTQ8			209	YLVQDTDEFILPTGANK	2	52	0.201	0.267	1.32835820895522	0.184475584028514
+Q9WU28	Pfdn5	Prefoldin subunit 5 (C-Myc-binding protein Mm-1) (EIG-1) (Myc modulator 1)	154	ELLVPLTSSMYVPGK	2	61	0.072	0.085	1.18055555555556	0.658708879196052
+Q9WU28	Pfdn5	Prefoldin subunit 5 (C-Myc-binding protein Mm-1) (EIG-1) (Myc modulator 1)	154	NQLDQEVEFLSTSIAQLK	2	20	0.194	0.161	0.829896907216495	0.334525703348096
+Q9WU28	Pfdn5	Prefoldin subunit 5 (C-Myc-binding protein Mm-1) (EIG-1) (Myc modulator 1)	154	NQLDQEVEFLSTSIAQLK	3	20	0.174	0.211	1.21264367816092	0.00731873348343933
+Q9WTQ5	Akap12	A-kinase anchor protein 12 (AKAP-12) (Germ cell lineage protein gercelin) (Src-suppressed C kinase substrate) (SSeCKS)	1684	DVLEPTQALAAGAVPILAK	3	1208	0.265	0.289	1.09056603773585	0.551551376949943
+Q9WTQ5	Akap12	A-kinase anchor protein 12 (AKAP-12) (Germ cell lineage protein gercelin) (Src-suppressed C kinase substrate) (SSeCKS)	1684	IVQSVIQTAVDQFAR	2	1509	0.222	0.293	1.31981981981982	0.0659205583692759
+Q9WTQ5	Akap12	A-kinase anchor protein 12 (AKAP-12) (Germ cell lineage protein gercelin) (Src-suppressed C kinase substrate) (SSeCKS)	1684	IVQSVIQTAVDQFAR	3	1509	0.178	0.318	1.78651685393258	0.017562354472247
+Q9WTQ5	Akap12	A-kinase anchor protein 12 (AKAP-12) (Germ cell lineage protein gercelin) (Src-suppressed C kinase substrate) (SSeCKS)	1684	VELPLEDQVGDLEALSEK	3	356	0.258	0.384	1.48837209302326	0.0372464170427303
+Q9WTQ5	Akap12	A-kinase anchor protein 12 (AKAP-12) (Germ cell lineage protein gercelin) (Src-suppressed C kinase substrate) (SSeCKS)	1684	VKEDSQVPATQTLQR	2	1029	0.285	0.288	1.01052631578947	0.985890714794855
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	AYEAQTEPVLQYYQK	2	175	0.038	0.054	1.42105263157895	0.49988930244556
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	AYEAQTEPVLQYYQK	2	175	0.041	0.053	1.29268292682927	0.306176963387312
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	AYEAQTEPVLQYYQK	2	175	0.038	0.055	1.44736842105263	0.0721760092717027
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	GVLETFSGTETNK	2	191	0.037	0.045	1.21621621621622	0.145558694585058
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	GVLETFSGTETNK	2	191	0.035	0.039	1.11428571428571	0.371661184121156
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	IWPHVYSFLQTK	3	204	0.046	0.053	1.15217391304348	0.571818957280335
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	KGVLETFSGTETNK	2	190	0.025	0.048	1.92	0.0277109972042529
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	QNMLQGTEIGVLAK	2	44	0.049	0.081	1.6530612244898	0.0994603154268313
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	SWLLDGFPR	2	86	0.021	0.045	2.14285714285714	0.0345922079484101
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	TLTQCSWLLDGFPR	2	81	0.055	0.043	0.781818181818182	0.137540013896251
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	TLTQCSWLLDGFPR	3	81	0.031	0.06	1.93548387096774	0.155923167875512
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	TLTQCSWLLDGFPR	3	81	0.049	0.019	0.387755102040816	0.0115096040227287
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	TLTQCSWLLDGFPR	3	81	0.043	0.044	1.02325581395349	0.81774256019597
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	TVGIDDLTGEPLIQR	2	147	0.044	0.053	1.20454545454545	0.0113439138979528
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	TVGIDDLTGEPLIQR	2	147	0.044	0.048	1.09090909090909	0.475602894080025
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	TVGIDDLTGEPLIQR	2	147	0.045	0.062	1.37777777777778	0.280653347079997
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	TVGIDDLTGEPLIQR	3	147	0.042	0.056	1.33333333333333	0.155067851973241
+Q9WTP7	Ak3	GTP:AMP phosphotransferase AK3, mitochondrial (EC 2.7.4.10) (Adenylate kinase 3) (AK 3) (Adenylate kinase 3 alpha-like 1)	227	TVGIDDLTGEPLIQR	3	147	0.036	0.055	1.52777777777778	0.000310813732815281
+Q8BI84	Mia3	Melanoma inhibitory activity protein 3 (Transport and Golgi organization protein 1)	1930	FGSTADALVSDDEATR	2	281	0.229	0.447	1.95196506550218	0.0405880251935483
+Q9WTP6	Ak2	Adenylate kinase 2, mitochondrial (AK 2) (EC 2.7.4.3) (ATP-AMP transphosphorylase 2) (ATP:AMP phosphotransferase) (Adenylate monophosphate kinase) [Cleaved into: Adenylate kinase 2, mitochondrial, N-terminally processed]	239	APNVLASEPEIPK	2	2	0.032	0.043	1.34375	0.204265825791387
+Q9WTP6	Ak2	Adenylate kinase 2, mitochondrial (AK 2) (EC 2.7.4.3) (ATP-AMP transphosphorylase 2) (ATP:AMP phosphotransferase) (Adenylate monophosphate kinase) [Cleaved into: Adenylate kinase 2, mitochondrial, N-terminally processed]	239	APNVLASEPEIPK	2	2	0.035	0.051	1.45714285714286	8.22122353708466e-05
+Q9WTP6	Ak2	Adenylate kinase 2, mitochondrial (AK 2) (EC 2.7.4.3) (ATP-AMP transphosphorylase 2) (ATP:AMP phosphotransferase) (Adenylate monophosphate kinase) [Cleaved into: Adenylate kinase 2, mitochondrial, N-terminally processed]	239	GIHCAIDASQTPDIVFASILAAFSK	3	205	0.042	0.038	0.904761904761905	0.754477589727835
+Q9WTP6	Ak2	Adenylate kinase 2, mitochondrial (AK 2) (EC 2.7.4.3) (ATP-AMP transphosphorylase 2) (ATP:AMP phosphotransferase) (Adenylate monophosphate kinase) [Cleaved into: Adenylate kinase 2, mitochondrial, N-terminally processed]	239	LAENFCVCHLATGDM(15.9949)LR	3	35	0.013	0.039	3	0.0065268863990066
+Q9WTP6	Ak2	Adenylate kinase 2, mitochondrial (AK 2) (EC 2.7.4.3) (ATP-AMP transphosphorylase 2) (ATP:AMP phosphotransferase) (Adenylate monophosphate kinase) [Cleaved into: Adenylate kinase 2, mitochondrial, N-terminally processed]	239	LAENFCVCHLATGDMLR	3	35	0.03	0.047	1.56666666666667	2.86869959858408e-05
+Q9WTP6	Ak2	Adenylate kinase 2, mitochondrial (AK 2) (EC 2.7.4.3) (ATP-AMP transphosphorylase 2) (ATP:AMP phosphotransferase) (Adenylate monophosphate kinase) [Cleaved into: Adenylate kinase 2, mitochondrial, N-terminally processed]	239	LAENFCVCHLATGDMLR	3	35	0.058	0.016	0.275862068965517	0.0042680255521945
+Q9WTP6	Ak2	Adenylate kinase 2, mitochondrial (AK 2) (EC 2.7.4.3) (ATP-AMP transphosphorylase 2) (ATP:AMP phosphotransferase) (Adenylate monophosphate kinase) [Cleaved into: Adenylate kinase 2, mitochondrial, N-terminally processed]	239	LAENFCVCHLATGDMLR	3	35	0.03	0.04	1.33333333333333	0.00439492777587867
+Q9WTP6	Ak2	Adenylate kinase 2, mitochondrial (AK 2) (EC 2.7.4.3) (ATP-AMP transphosphorylase 2) (ATP:AMP phosphotransferase) (Adenylate monophosphate kinase) [Cleaved into: Adenylate kinase 2, mitochondrial, N-terminally processed]	239	LEAYHTQTTPLVEYYR	2	187	0.016	0.029	1.8125	0.331407485628784
+Q9WTP6	Ak2	Adenylate kinase 2, mitochondrial (AK 2) (EC 2.7.4.3) (ATP-AMP transphosphorylase 2) (ATP:AMP phosphotransferase) (Adenylate monophosphate kinase) [Cleaved into: Adenylate kinase 2, mitochondrial, N-terminally processed]	239	LEAYHTQTTPLVEYYR	3	187	0.029	0.048	1.6551724137931	0.00860532788008382
+Q9WTP6	Ak2	Adenylate kinase 2, mitochondrial (AK 2) (EC 2.7.4.3) (ATP-AMP transphosphorylase 2) (ATP:AMP phosphotransferase) (Adenylate monophosphate kinase) [Cleaved into: Adenylate kinase 2, mitochondrial, N-terminally processed]	239	LVSDEMVVELIEK	2	73	0.028	0.034	1.21428571428571	0.416833507295144
+Q9WTP6	Ak2	Adenylate kinase 2, mitochondrial (AK 2) (EC 2.7.4.3) (ATP-AMP transphosphorylase 2) (ATP:AMP phosphotransferase) (Adenylate monophosphate kinase) [Cleaved into: Adenylate kinase 2, mitochondrial, N-terminally processed]	239	LVSDEMVVELIEK	2	73	0.016	0.032	2	0.00338731557173557
+Q9CZY3	Ube2v1	Ubiquitin-conjugating enzyme E2 variant 1 (UEV-1) (CROC-1)	147	VNMSGVSSSNGVVDPR	2	88	0.069	0.089	1.28985507246377	0.033277915729759
+Q62167	Ddx3x	ATP-dependent RNA helicase DDX3X (EC 3.6.4.13) (D1Pas1-related sequence 2) (DEAD box RNA helicase DEAD3) (mDEAD3) (DEAD box protein 3, X-chromosomal) (Embryonic RNA helicase)	662	QSSGASSSSFSSSR	2	604	0.2	0.192	0.96	0.837990866355254
+Q62167	Ddx3x	ATP-dependent RNA helicase DDX3X (EC 3.6.4.13) (D1Pas1-related sequence 2) (DEAD box RNA helicase DEAD3) (mDEAD3) (DEAD box protein 3, X-chromosomal) (Embryonic RNA helicase)	662	VRPCVVYGGAEIGQQIR	3	295	0.407	0.319	0.783783783783784	0.207280897629841
+Q62165	Dag1	Dystroglycan (Dystrophin-associated glycoprotein 1) [Cleaved into: Alpha-dystroglycan (Alpha-DG); Beta-dystroglycan (Beta-DG)]	893	GVPIIFADELDDSKPPPSSSMPLILQEEK	3	793	0.123	0.147	1.19512195121951	0.592346075817942
+Q62165	Dag1	Dystroglycan (Dystrophin-associated glycoprotein 1) [Cleaved into: Alpha-dystroglycan (Alpha-DG); Beta-dystroglycan (Beta-DG)]	893	GVPIIFADELDDSKPPPSSSMPLILQEEK	3	793	0.098	0.098	1	1
+Q62165	Dag1	Dystroglycan (Dystrophin-associated glycoprotein 1) [Cleaved into: Alpha-dystroglycan (Alpha-DG); Beta-dystroglycan (Beta-DG)]	893	LAGDPAPVVNDIHK	3	610	0.087	0.086	0.988505747126437	0.960048894150445
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	AAVFGGTQSLHTNSFDEALGLPTVK	3	374	0.082	0.1	1.21951219512195	0.0492287451884681
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	AAVQVLDDIEK	2	729	0.1	0.08	0.8	0.125689493947173
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	AAVQVLDDIEK	2	729	0.1	0.089	0.89	0.476626104910537
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	AAVQVLDDIEK	2	729	0.116	0.096	0.827586206896552	0.0940626023708113
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	ADTLDLPEELPGVKPF	2	74	0.104	0.093	0.894230769230769	0.262351113773083
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	ADTLDLPEELPGVKPF	2	74	0.101	0.096	0.95049504950495	0.597476536756539
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	ADTLDLPEELPGVKPF	3	74	0.057	0.079	1.3859649122807	0.291648690342072
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	ADTLDLPEELPGVKPF	3	74	0.103	0.094	0.912621359223301	0.496791371993271
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	AGQQGLSVAFDLATHR	3	127	0.091	0.084	0.923076923076923	0.432145212687708
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	AGQQGLSVAFDLATHR	3	127	0.117	0.071	0.606837606837607	0.0412313273996476
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	AHCQTSGWSLTEQDPYNNIVR	3	347	0.082	0.08	0.975609756097561	0.89922716860769
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	CTVGEITDALK	2	558	0.097	0.106	1.09278350515464	0.501954093070094
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	DQALAEQCLSALTQC	2	524	0.102	0.098	0.96078431372549	0.827301121955392
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	EVAQQAVDADVHAVGVSTLAAGHK	3	654	0.084	0.085	1.01190476190476	0.922248406480779
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	EVAQQAVDADVHAVGVSTLAAGHK	3	654	0.081	0.077	0.950617283950617	0.858995794906046
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	EVAQQAVDADVHAVGVSTLAAGHK	3	654	0.105	0.092	0.876190476190476	0.265319933536998
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	GAVIPVLATFIVTGEEQGVPK	2	188	0.085	0.077	0.905882352941176	0.486998740041899
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	GDVGMAGVAIDTVEDTK	2	153	0.072	0.021	0.291666666666667	0.00286292729223388
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	GDVGMAGVAIDTVEDTK	2	153	0.092	0.09	0.978260869565217	0.924301789561221
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	GDVGMAGVAIDTVEDTK	2	153	0.1	0.088	0.88	0.280095958852063
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	GDVGMAGVAIDTVEDTK	3	153	0.112	0.062	0.553571428571429	0.0245502624246263
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	GDVGMAGVAIDTVEDTK	3	153	0.113	0.093	0.823008849557522	0.110780831395448
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	GKNPEDLIWHTPEGISIK	4	51	0.093	0.065	0.698924731182796	0.0720064324979837
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	IDSGSEVIVGVNK	2	477	0.065	0.094	1.44615384615385	0.128871085950436
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	IIADIFQYTAQHMPK	2	239	0.066	0.137	2.07575757575758	0.308309056511767
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	ILFDGIPLEK	2	170	0.084	0.079	0.94047619047619	0.688188346006945
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	ILFDGIPLEK	2	170	0.05	0.056	1.12	0.600958746738545
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	ILFDGIPLEK	2	170	0.054	0.055	1.01851851851852	0.931367179761689
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	IVTGEEQGVPK	2	198	0.103	0.106	1.02912621359223	0.916680189114044
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	LHQQQPLHPEWAVLAK	4	31	0.109	0.089	0.81651376146789	0.207115365047897
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	LHQQQPLHPEWAVLAK	4	31	0.147	0.135	0.918367346938776	0.651707750871053
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	LHQQQPLHPEWAVLAK	4	31	0.101	0.103	1.01980198019802	0.888056187277268
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	LTGTIQNDILK	2	211	0.094	0.074	0.787234042553191	0.129865736614071
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	LTGTIQNDILK	2	211	0.085	0.087	1.02352941176471	0.888519496885633
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	LTGTIQNDILK	2	211	0.102	0.092	0.901960784313726	0.375623485998007
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	NPEDLIWHTPEGISIK	3	53	0.082	0.09	1.09756097560976	0.701626020409875
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	NPEDLIWHTPEGISIK	3	53	0.073	0.073	1	1
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	NPEDLIWHTPEGISIKPL	3	53	0.096	0.079	0.822916666666667	0.207061140867391
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	NPEDLIWHTPEGISIKPLYSR	3	53	0.077	0.145	1.88311688311688	0.19953896632845
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	NTQIIIQEESGIPK	2	405	0.083	0.077	0.927710843373494	0.582679315960018
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	NTQIIIQEESGIPK	2	405	0.086	0.074	0.86046511627907	0.33377175906956
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	QYAGFSTVEESNK	2	107	0.084	0.097	1.1547619047619	0.569735694062537
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	SFDEALGLPTVK	2	387	0.099	0.116	1.17171717171717	0.493749315496296
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	TGLQAGLTIDEFAPR	2	288	0.105	0.055	0.523809523809524	0.0281052387711985
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	TGLQAGLTIDEFAPR	2	288	0.092	0.076	0.826086956521739	0.0978928050903345
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	TLVPELIK	2	678	0.053	0.061	1.15094339622642	0.586930835469113
+P16332	Mut	Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)	748	TLVPELIK	2	678	0.061	0.072	1.18032786885246	0.478367569587971
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	DIWFGTPEGEFVSM	2	256	0.058	0.097	1.67241379310345	0.173831951356165
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	DLDVAVLVGSM(15.9949)PR	2	80	0.045	0.04	0.888888888888889	0.686125745401169
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	DLDVAVLVGSMPR	2	80	0.047	0.07	1.48936170212766	0.0454207827160476
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	DLDVAVLVGSMPR	2	80	0.055	0.106	1.92727272727273	0.000947454311320482
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	DLDVAVLVGSMPR	3	80	0.042	0.063	1.5	0.0126755672583367
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	DLDVAVLVGSMPR	3	80	0.031	0.051	1.64516129032258	0.155179391545852
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	ELTEEKETAFEFLSSA	2	319	0.044	0.075	1.70454545454545	0.0151928589397436
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	ENFSCLTR	2	150	0.037	0.038	1.02702702702703	0.927225624856309
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	ENFSCLTR	2	150	0.039	0.039	1	1
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	ETAFEFLSSA	2	325	0.059	0.066	1.11864406779661	0.017520337618112
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	ETAFEFLSSA	2	325	0.056	0.061	1.08928571428571	0.45796461234183
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	EVGVYEALK	2	206	0.053	0.073	1.37735849056604	0.174802423163736
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	EVGVYEALKDDSWLK	2	206	0.062	0.087	1.40322580645161	0.00451398409188863
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	FVEGLPINDFSR	2	299	0.059	0.068	1.15254237288136	0.233787716297276
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	FVEGLPINDFSR	2	299	0.058	0.056	0.96551724137931	0.875817904510642
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	GEFITTVQQR	2	221	0.062	0.062	1	1
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	GEFITTVQQR	2	221	0.056	0.032	0.571428571428571	0.0309973721638597
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	GEFITTVQQR	2	221	0.034	0.061	1.79411764705882	0.0301340508578276
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	IFKSQGTALEK	2	108	0.029	0.033	1.13793103448276	0.709328743659666
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	IFKSQGTALEK	3	108	0.089	0.078	0.876404494382023	0.506878070580883
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	IVVGNPANTNCLTASK	2	127	0.038	0.053	1.39473684210526	0.0735527766915874
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	KLS(79.9663)SAMSAAK	2	239	0.037	0.127	3.43243243243243	0.00804897930682287
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	KLSSAM(15.9949)SAAK	2	239	0.045	0.048	1.06666666666667	0.73117610065842
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	KLSSAMSAAK(114.042927)	2	239	0.051	0.042	0.823529411764706	0.143013829494894
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	KLSSAMSAAK	2	239	0.043	0.054	1.25581395348837	0.000604814121806829
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	KLSSAMSAAK	2	239	0.035	0.06	1.71428571428571	0.0255328142273366
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	KLSSAMSAAK	2	239	0.03	0.042	1.4	0.21156425139214
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	LSSAMSAAK	2	240	0.032	0.04	1.25	0.277335532181477
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	NVIIWGNHSSTQYPDVNHAK(114.042927)	3	180	0.042	0.05	1.19047619047619	0.420441041704065
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	NVIIWGNHSSTQYPDVNHAK	3	180	0.051	0.054	1.05882352941176	0.670803367681556
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	NVIIWGNHSSTQYPDVNHAK	3	180	0.053	0.068	1.28301886792453	0.0797529394041796
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	PANTNCLTASK	2	132	0.035	0.04	1.14285714285714	0.509270550687444
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	SSTQYPDVNHAK	2	188	0.05	0.082	1.64	0.351454925831581
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	SVK(114.042927)VIVVGNPANTNCLTASK	3	123	0.049	0.056	1.14285714285714	0.47303520675643
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	VIIWGNHSSTQYPDVNHAK	3	181	0.032	0.056	1.75	0.0201189149227472
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	VIVVGNPANTNCLTASK	2	126	0.056	0.087	1.55357142857143	0.134936085434697
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	VIVVGNPANTNCLTASK	2	126	0.041	0.056	1.36585365853659	0.211483044778951
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	VIVVGNPANTNCLTASK	3	126	0.058	0.07	1.20689655172414	0.00480478534965575
+P14152	Mdh1	Malate dehydrogenase, cytoplasmic (EC 1.1.1.37) (Cytosolic malate dehydrogenase)	334	VIVVGNPANTNCLTASKSAPSIPK	3	126	0.04	0.044	1.1	0.725903142027079
+Q64338	Pde1c	Calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1C (Cam-PDE 1C) (EC 3.1.4.17)	706	IVSPLIDESSQTGGTGQR	2	449	0.152	0.183	1.20394736842105	0.435627371231848
+Q9CZX8	Rps19	40S ribosomal protein S19	145	DVNQQEFVR	2	8	0.098	0.123	1.25510204081633	0.365218588399547
+Q9CZX8	Rps19	40S ribosomal protein S19	145	ELAPYDENWFYTR	2	44	0.062	0.113	1.82258064516129	0.00736057453262711
+Q9CZX8	Rps19	40S ribosomal protein S19	145	IAGQVAAANKK	2	134	0.057	0.105	1.84210526315789	0.0433419688085832
+Q9CZX8	Rps19	40S ribosomal protein S19	145	LKVPEWVDTVK	2	28	0.05	0.149	2.98	0.00788722563838613
+Q9CZX8	Rps19	40S ribosomal protein S19	145	LKVPEWVDTVK	3	28	0.034	0.091	2.67647058823529	0.00727542203356157
+Q9CZX8	Rps19	40S ribosomal protein S19	145	LKVPEWVDTVK	3	28	0.06	0.13	2.16666666666667	0.00216726772909386
+Q9CZX8	Rps19	40S ribosomal protein S19	145	RVLQALEGLK	2	102	0.06	0.093	1.55	0.00327494560669344
+Q9CZX8	Rps19	40S ribosomal protein S19	145	VLQALEGLK	2	103	0.081	0.114	1.40740740740741	0.0785621456893994
+Q9CZX8	Rps19	40S ribosomal protein S19	145	VPEWVDTVK	2	30	0.171	0.1	0.584795321637427	0.260637566779448
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	ALQGASQIIAEIR	2	725	0.082	0.119	1.45121951219512	0.00247264062791866
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	FATEYCNTIEGTAK	2	346	0.112	0.204	1.82142857142857	0.138602853858019
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	FISNPNSIILAVTAANTDMATSEALK	3	179	0.094	0.117	1.24468085106383	0.0950872534105176
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	GHAVNLLDVPVPVAR	3	626	0.085	0.112	1.31764705882353	0.0164641672658998
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	GVSPEPIHLK	2	130	0.065	0.083	1.27692307692308	0.0322472840809627
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	IIQHCSNYSTQELLR	3	448	0.07	0.106	1.51428571428571	0.0750664656102028
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	INVLAAQYQSLLNSYGEPVDDK	3	314	0.066	0.158	2.39393939393939	0.0474588967384615
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	LGIIGVVNR	2	245	0.054	0.068	1.25925925925926	0.0141803223829398
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	LGIIGVVNR	2	245	0.057	0.062	1.08771929824561	0.60573986813184
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	LQDVFNTVGADIIQLPQIVVVGTQSSGK	3	11	0.082	0.21	2.5609756097561	0.0123577525598706
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	RLEEPSLR	2	429	0.073	0.089	1.21917808219178	0.127552594567293
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	RPLILQLVHVSPEDK	3	61	0.085	0.117	1.37647058823529	3.62170941508687e-05
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	RPLILQLVHVSPEDKR	3	61	0.066	0.116	1.75757575757576	0.104381025520968
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	SATLLQLITK	2	336	0.069	0.079	1.14492753623188	0.462455005172857
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	SKPIPIMPASPQK	2	613	0.051	0.078	1.52941176470588	0.000121475279346725
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	SKPIPIMPASPQK	3	613	0.064	0.128	2	0.0472222353095408
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	SSLLDDLLTESEDM(15.9949)AQR	2	699	0.08	0.106	1.325	0.0504177347797302
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	SSLLDDLLTESEDMAQR	2	699	0.098	0.111	1.13265306122449	0.507876256487343
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	SSLLDDLLTESEDMAQR	3	699	0.101	0.115	1.13861386138614	0.3411926855613
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	SSVLESLVGR	2	39	0.061	0.076	1.24590163934426	0.00343934878608898
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	TLESVDPLGGLNTIDILTAIR	2	383	0.112	0.122	1.08928571428571	0.807531968363366
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	TLESVDPLGGLNTIDILTAIR	3	383	0.088	0.109	1.23863636363636	0.0463088331418331
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	VFSPNVVNLTLVDLPGMTK	2	140	0.076	0.094	1.23684210526316	0.10448590459595
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	VFSPNVVNLTLVDLPGMTK	3	140	0.073	0.104	1.42465753424658	0.0118042149903724
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	VPSAGGGIGDGGQEPTTGNWR	2	576	0.081	0.131	1.61728395061728	0.041609476728935
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	VPSALAPASQEPPPAASAEADGK	3	542	0.106	0.167	1.57547169811321	0.0096803750501121
+Q8K1M6	Dnm1l	Dynamin-1-like protein (EC 3.6.5.5) (Dynamin family member proline-rich carboxyl-terminal domain less) (Dymple) (Dynamin-related protein 1)	742	YIETSELCGGAR	2	360	0.091	0.108	1.18681318681319	0.494417454167489
+Q62159	Rhoc	Rho-related GTP-binding protein RhoC (Silica-induced gene 61 protein) (SIG-61)	193	ISAFGYLECSAK	2	151	0.15	0.238	1.58666666666667	0.122505508655836
+Q8R1X6	Spg20	Spartin	671	VSQLLVDGVCTVANCVGK	2	494	0.281	0.287	1.02135231316726	0.933874474377251
+Q8R1X6	Spg20	Spartin	671	VSQLLVDGVCTVANCVGK	3	494	0.313	0.354	1.13099041533546	0.361416523249739
+Q91VF2	Hnmt	Histamine N-methyltransferase (HMT) (EC 2.1.1.8)	295	DLQEPEFSVK	2	266	0.063	0.071	1.12698412698413	0.517272598217834
+Q91VF2	Hnmt	Histamine N-methyltransferase (HMT) (EC 2.1.1.8)	295	FLNNSTEHQCMQEFMDK	3	22	0.074	0.072	0.972972972972973	0.924710853587115
+Q9R069	Bcam	Basal cell adhesion molecule (B-CAM cell surface glycoprotein) (Lutheran antigen) (CD antigen CD239)	622	AGAAGTSEATSSVR	2	122	0.155	0.156	1.00645161290323	0.969379465388366
+Q9R069	Bcam	Basal cell adhesion molecule (B-CAM cell surface glycoprotein) (Lutheran antigen) (CD antigen CD239)	622	EGDAVQLLCQGDGSPSPEYSFFR	3	276	0.179	0.133	0.743016759776536	0.193576840869295
+Q9R069	Bcam	Basal cell adhesion molecule (B-CAM cell surface glycoprotein) (Lutheran antigen) (CD antigen CD239)	622	VFATPEDTEVSPNK	2	136	0.153	0.208	1.35947712418301	0.201585947715677
+P14148	Rpl7	60S ribosomal protein L7	270	EANNFLWPFK	2	225	0.099	0.098	0.98989898989899	0.96389422543828
+P14148	Rpl7	60S ribosomal protein L7	270	IALTDNSLIAR	2	189	0.08	0.132	1.65	0.301103969285385
+P14148	Rpl7	60S ribosomal protein L7	270	KAGNFYVPAEPK	2	99	0.078	0.166	2.12820512820513	0.00284180872476641
+P14148	Rpl7	60S ribosomal protein L7	270	KVATVPGTLK	2	10	0.063	0.054	0.857142857142857	0.604505048827585
+P14148	Rpl7	60S ribosomal protein L7	270	KVATVPGTLK	2	10	0.049	0.081	1.6530612244898	0.00237520448647864
+P14148	Rpl7	60S ribosomal protein L7	270	KVPAVPETLK	2	32	0.052	0.114	2.19230769230769	0.00602950478467886
+P14148	Rpl7	60S ribosomal protein L7	270	KVPAVPETLKK	3	32	0.053	0.083	1.56603773584906	0.0738739100587206
+P14148	Rpl7	60S ribosomal protein L7	270	QIFNGTFVK	2	138	0.052	0.068	1.30769230769231	0.380343542367478
+Q9R062	Gyg1	Glycogenin-1 (GN-1) (GN1) (EC 2.4.1.186)	333	GALVLGSSLK	2	18	0.057	0.092	1.6140350877193	0.00307599246575272
+Q9R062	Gyg1	Glycogenin-1 (GN-1) (GN1) (EC 2.4.1.186)	333	LHCWSLTQYSK	3	87	0.078	0.104	1.33333333333333	0.206128030578761
+Q9R062	Gyg1	Glycogenin-1 (GN-1) (GN1) (EC 2.4.1.186)	333	TKPWNYTYNPQTK	2	217	0.056	0.085	1.51785714285714	0.130750987702453
+Q9R062	Gyg1	Glycogenin-1 (GN-1) (GN1) (EC 2.4.1.186)	333	TKPWNYTYNPQTK	2	217	0.048	0.064	1.33333333333333	0.185057174960173
+Q9R062	Gyg1	Glycogenin-1 (GN-1) (GN1) (EC 2.4.1.186)	333	TKPWNYTYNPQTK	3	217	0.058	0.102	1.75862068965517	0.0294467344873014
+Q9R062	Gyg1	Glycogenin-1 (GN-1) (GN1) (EC 2.4.1.186)	333	TKPWNYTYNPQTK	3	217	0.065	0.068	1.04615384615385	0.888429669348944
+Q9R061	Nubp2	Cytosolic Fe-S cluster assembly factor NUBP2 (Nucleotide-binding protein 2) (NBP 2)	275	LAGVPFLGSVPLDSQLTR	2	221	0.194	0.283	1.45876288659794	0.0834690722683162
+P14142	Slc2a4	Solute carrier family 2, facilitated glucose transporter member 4 (GT2) (Glucose transporter type 4, insulin-responsive) (GLUT-4)	509	LTGWADVSDALAELK	2	247	0.228	0.235	1.03070175438596	0.815224859937561
+P14142	Slc2a4	Solute carrier family 2, facilitated glucose transporter member 4 (GT2) (Glucose transporter type 4, insulin-responsive) (GLUT-4)	509	PSGFQQIGSDDGEPPR	2	2	0.222	0.198	0.891891891891892	0.575133694806272
+P14142	Slc2a4	Solute carrier family 2, facilitated glucose transporter member 4 (GT2) (Glucose transporter type 4, insulin-responsive) (GLUT-4)	509	TFDQISAAFR	2	475	0.183	0.171	0.934426229508197	0.504917212336469
+Q9CZW5	Tomm70a	Mitochondrial import receptor subunit TOM70 (Mitochondrial precursor proteins import receptor) (Translocase of outer membrane 70 kDa subunit)	611	ASPALGSGHHDGSGDSLEMSSLDR	3	93	0.079	0.113	1.43037974683544	0.0998236834235748
+Q9CZW5	Tomm70a	Mitochondrial import receptor subunit TOM70 (Mitochondrial precursor proteins import receptor) (Translocase of outer membrane 70 kDa subunit)	611	FALAQAQK	2	437	0.069	0.098	1.42028985507246	0.00187042393428582
+Q9CZW5	Tomm70a	Mitochondrial import receptor subunit TOM70 (Mitochondrial precursor proteins import receptor) (Translocase of outer membrane 70 kDa subunit)	611	FALAQAQK	2	437	0.068	0.091	1.33823529411765	0.00238899836251166
+Q9CZW5	Tomm70a	Mitochondrial import receptor subunit TOM70 (Mitochondrial precursor proteins import receptor) (Translocase of outer membrane 70 kDa subunit)	611	GFEEIIK	2	467	0.043	0.064	1.48837209302326	0.114851666555413
+Q9CZW5	Tomm70a	Mitochondrial import receptor subunit TOM70 (Mitochondrial precursor proteins import receptor) (Translocase of outer membrane 70 kDa subunit)	611	NREPLMPSPQFIK	2	249	0.019	0.07	3.68421052631579	0.00914294470233347
+Q9CZW5	Tomm70a	Mitochondrial import receptor subunit TOM70 (Mitochondrial precursor proteins import receptor) (Translocase of outer membrane 70 kDa subunit)	611	YEQAIQCYTEAISLCPTEK	3	133	0.086	0.102	1.18604651162791	0.548053615356987
+Q9CZW5	Tomm70a	Mitochondrial import receptor subunit TOM70 (Mitochondrial precursor proteins import receptor) (Translocase of outer membrane 70 kDa subunit)	611	YEQAIQCYTEAISLCPTEK	3	133	0.07	0.105	1.5	0.0492619900243976
+Q3TJZ6	Fam98a	Protein FAM98A	515	HQGGWTDGGSGSGGGYQDGAYR	3	378	0.122	0.237	1.94262295081967	0.125279448671284
+Q9R059	Fhl3	Four and a half LIM domains protein 3 (FHL-3) (Skeletal muscle LIM-protein 2) (SLIM-2)	289	RPITGGSGGGEGAGLGGGK	3	226	0.081	0.176	2.17283950617284	0.0887868586531481
+P06537			783	SQELFDEIR	2	688	0.666	0.497	0.746246246246246	0.189930595896831
+Protein name	GN	PN	Protein length	Peptide	Charge	Position	k.1	k.2	Peptide ratio	Welch's t test P value
+Protein name	GN	PN	Protein length	Peptide	Charge	Position	k.1	k.2	Peptide ratio	Welch's t test P value

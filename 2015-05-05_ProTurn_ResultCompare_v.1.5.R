@@ -9,13 +9,20 @@
 #SE_threshold <- 0.1              # Standard error threshold to further filter out some peptides from Grapher output
 
 #home_directory <- "~/Documents/Ping Lab/R Projects/proturn-grapher/"     # Working directory. Need back slach "/" at the end
+#home_directory <- "~/Documents/Ping Lab/Project Files/2015 Isoform Turnover/" # Working directory. Need back slach "/" at the end
 home_directory <- "~/Documents/Ping Lab/Project Files/2015 Paraquat Turnover/" # Working directory. Need back slach "/" at the end
 
-dataset1.directory <- "1. Vehicle Mito/"                              # The Proturn grapher output file for dataset 1, e.g., control hearts
-dataset2.directory <- "2. Paraquat Mito/"                              # The Proturn grapher output file for dataset 2, e.g., iso hearts
+#dataset1.directory <- "Data/ctrl/ctrl mouse heart cyto/"                              # The Proturn grapher output file for dataset 1, e.g., control hearts
+#dataset2.directory <- "Data/iso/iso mouse heart cyto/"                              # The Proturn grapher output file for dataset 2, e.g., iso hearts
+dataset1.directory <- "5. Vehicle Cyto/"                              # The Proturn grapher output file for dataset 1, e.g., control hearts
+dataset2.directory <- "6. Paraquat Cyto New/"                              # The Proturn grapher output file for dataset 2, e.g., iso hearts
 
-comparison_output <- "ProTurn_Compare.txt"                              # Name of the result file (comparing two proteins)
-peptide_comparison_output <- "ProTurn_Peptide_Compare.txt"              # Name of the peptide result file (comparing each common peptide for all proteins)
+
+
+local_fasta_location <- "~/Documents/Ping Lab/Project Files/2015 Isoform Turnover/Fasta/Swissprot_Mouse_16689entries_20141219.fasta"
+
+comparison_output <- paste("ProTurn_Protein_Compare ", as.character(Sys.time()), ".txt",sep="")                              # Name of the result file (comparing two proteins)
+peptide_comparison_output <- paste("ProTurn_Peptide_Compare ", as.character(Sys.time()), ".txt",sep="")              # Name of the peptide result file (comparing each common peptide for all proteins)
 # Load annotation files
 annotation.location <- "~/Documents/Ping Lab/Heavy Water/ProTurn Output/Annotation file/10090_annotations.csv"      # Annotation file
 
@@ -23,6 +30,7 @@ annotation.location <- "~/Documents/Ping Lab/Heavy Water/ProTurn Output/Annotati
 
 ############ LOAD LIBRARIES ###############
 require("BSDA")
+require("httr")
 
 ############ LOAD INDIVIDUAL PEPTIDE OUTPUT FILES ###############
 setwd(home_directory)
@@ -52,6 +60,9 @@ summary <- paste(
         sep = "\t")
 write(summary, file=comparison_output, append=T)
 
+
+
+
 ################################################
 
 ############## FUNCTIONS ##############
@@ -74,6 +85,7 @@ Rescaled_Model <-function(x){
         return(final)
 }
 
+# Calculate Fractional Synthesis from the hl-data.out subset.
 Calculate_FS <- function(x){
         A0. <- subset$a[j]
         Ainf. <- subset$a[j]*(1-subset$pss[j])^subset$N[j]
@@ -81,15 +93,69 @@ Calculate_FS <- function(x){
         return(FS.)
 }
 
-########################################
+## This function gets individual peptide sequences through Uniprot (slow)
+Get_sequence <- function(Uniprot,peptide){
 
-######### GRAPHICAL OUTPUT PARAMETERS ##########
-pdf(file="Proturn_fit.pdf")
-par(mfrow=c(5,4), mar=c(2.2,2.2,2,2))
-################################################
+        peptide <- gsub( " *\\(.*?\\) *", "", peptide)        
+        fasta_address <- paste("http://www.uniprot.org/uniprot/", Uniprot, ".fasta",sep="")
+        fasta <- readLines(fasta_address)
+        fasta <- paste(
+                fasta[2:length(fasta)]
+                ,collapse="")
+        protein_length <- nchar(fasta)
 
+        position <- regexpr(peptide,fasta,fixed=TRUE)
+        starting_pos <- position[1]
+        result <- list(protein_length,starting_pos)
+        }
+
+# This function reads the local fasta file
+Read_local_fasta <- function(file) {
+        # Read the file line by line
+        fasta<-readLines(file)
+        # Identify header lines
+        ind<-grep(">", fasta)
+        # Identify the sequence lines
+        s<-data.frame(ind=ind, from=ind+1, to=c((ind-1)[-1], length(fasta)))
+        # Process sequence lines
+        seqs<-rep(NA, length(ind))
+        for(i in 1:length(ind)) {
+                seqs[i]<-paste(fasta[s$from[i]:s$to[i]], collapse="")
+                }
+        #Create a data frame 
+                DF<-data.frame(name=gsub(">", "", fasta[ind]), sequence=seqs)
+        # Return the data frame as a result object from the function
+        return(DF)
+        }
+
+## This function gets individual peptide sequences from the local fasta file (fast)
+Get_local_sequence <- function(Uniprot,peptide) {
+        
+        peptide <- gsub( " *\\(.*?\\) *", "", peptide)        
+        
+        Local_sequence <- Local_fasta[grep(Uniprot,Local_fasta$name),2]
+        
+        protein_length <- nchar(as.character(Local_sequence))
+        
+        position <- regexpr(peptide,Local_sequence,fixed=TRUE)
+        starting_pos <- position[1]
+        result <- list(protein_length,starting_pos)
+}
+
+
+###################################################
+
+############# Read the Local FASTA file ############
+# Read the FASTA file
+Local_fasta <- Read_local_fasta(local_fasta_location)
+#####################################################
 
 ################## MAIN LOOP (PROTEIN OUTPUT) ####################
+
+# Graphical output parameters
+pdf(file="Proturn_fit.pdf")
+par(mfrow=c(5,4), mar=c(2.2,2.2,2,2))
+
 #Loop through all Uniprot IDs in the protein list, and extract all the peptides from either result files that belong to the protein.
 #for (i in 6){
 for (i in 1:nrow(protein.list)) {
@@ -143,7 +209,8 @@ for (i in 1:nrow(protein.list)) {
                         # Plot out each fitted kinetic curve
                         curve(Rescaled_Model(x), from=0, to=15, col="red", add=TRUE)
                         # Find all the data points linked to the peptide IDs in the protein being considered
-                        hl.data.peptide.subset <- hl.data.1[ which(hl.data.1$ID == subset$ID[j]),1:3]
+                        # NOTE, changed from == to %in% because == didn't seem to work when the IDs were no longer numbers?
+                        hl.data.peptide.subset <- hl.data.1[ which(hl.data.1$ID %in% subset$ID[j]),1:3] 
                         # Calculate their fractional synthesis
                         FS <- sapply(hl.data.peptide.subset$A0, Calculate_FS)
                         hl.data.peptide.subset <- cbind(hl.data.peptide.subset,FS)
@@ -158,7 +225,7 @@ for (i in 1:nrow(protein.list)) {
                         # Plot out each fitted kinetic curve
                         curve(Rescaled_Model(x), from=0, to=15, col="blue", add=TRUE)
                         # Find all the data points linked to the peptide IDs in the protein being considered
-                        hl.data.peptide.subset <- hl.data.2[ which(hl.data.2$ID == subset$ID[j]),1:3]
+                        hl.data.peptide.subset <- hl.data.2[ which(hl.data.2$ID %in% subset$ID[j]),1:3]
                         # Calculate their fractional synthesis
                         FS <- sapply(hl.data.peptide.subset$A0, Calculate_FS)
                         hl.data.peptide.subset <- cbind(hl.data.peptide.subset,FS)
@@ -183,12 +250,21 @@ dev.off()
 
 ################ PEPTIDE COMPARISON OUTPUT ####################
 
+# Preparing the output file..
 peptide_summary <- paste(
-        "Protein name", "GN", "PN", "Peptide", "Charge",
+        "Protein name", "GN", "PN", "Protein length",
+        "Peptide", "Charge", "Position",
         "k.1","k.2","Peptide ratio", "Welch's t test P value",
         sep = "\t")
 write(peptide_summary, file=peptide_comparison_output, append=T)
 
+# Graphical output parameters
+pdf(file="Proturn_Peptide_fit.pdf")
+par(mfrow=c(5,3), mar=c(2.2,2.2,2,2))
+
+
+
+#for(i in 1:100){
 for (i in 1:nrow(protein.list)) {
         
         print(paste("Now running Protein # ", i, " of ", nrow(protein.list), ". ", round(i/nrow(protein.list)*100,2), "% done."))
@@ -199,18 +275,37 @@ for (i in 1:nrow(protein.list)) {
         GN <- annot[ which(annot$Uniprot == protein.list[i]),5]
         PN <- annot[ which(annot$Uniprot == protein.list[i]),3]
         
+        
         # Add a new column which concatenates peptide and charge to become a unique identifier for peptide        
         if (nrow(subset.output.1) > 0) {
                 subset.output.1$concat <- NA
+                subset.output.1$protein_length <- NA
+                subset.output.1$peptide_pos <- NA
                 for (j in 1:nrow(subset.output.1)){
+                        # Concatenated (peptide + charge) peptide identifier for normal analysis (not combining organelles)
                         subset.output.1$concat[j] <- paste(subset.output.1$Peptide[j],subset.output.1$z[j], sep="")
+                        # If you are using combined organelle files, also paste the first character of the modified IDs
+                        #subset.output.1$concat[j] <- paste(subset.output.1$Peptide[j],subset.output.1$z[j],substr(subset.output.1$ID[j],1,1), sep="")
+                        
+                        sequence <- Get_local_sequence(subset.output.1$Uniprot[j],subset.output.1$Peptide[j])
+                        subset.output.1$protein_length[j] <- unlist(sequence[1])
+                        subset.output.1$peptide_pos[j] <- unlist(sequence[2])
                 }
         }
         
         if (nrow(subset.output.2) > 0) {
                 subset.output.2$concat <- NA
+                subset.output.2$protein_length <- NA
+                subset.output.2$peptide_pos <- NA
                 for (j in 1:nrow(subset.output.2)){
+                        # Concatenated (peptide + charge) peptide identifier for normal analysis (not combining organelles)
                         subset.output.2$concat[j] <- paste(subset.output.2$Peptide[j],subset.output.2$z[j], sep="")
+                        # If you are using combined organelle files, also paste the first character of the modified IDs
+                        #subset.output.2$concat[j] <- paste(subset.output.2$Peptide[j],subset.output.2$z[j],substr(subset.output.2$ID[j],1,1), sep="")
+                        
+                        sequence <- Get_local_sequence(subset.output.2$Uniprot[j],subset.output.2$Peptide[j])
+                        subset.output.2$protein_length[j] <- unlist(sequence[1])
+                        subset.output.2$peptide_pos[j] <- unlist(sequence[2])
                 }
         }
         
@@ -229,18 +324,36 @@ for (i in 1:nrow(protein.list)) {
         # Calculate ratios
         common.peptides$ratio <- common.peptides$k.2/common.peptides$k.1
                 
-        
-                # Calculate the Welch's t test ratio for each peptide pair
-                if  (nrow(common.peptides) > 0){
+       
+        # If there are common peptides between two samples for this protein, plot graph and calculate statistics.
+        if  (nrow(common.peptides) > 0){
+                
+                # Preparing the plot
+                plot(-10, -10, xlab="Pos", ylab="log2 Ratio", ylim=c(-2,2), xlim=c(0,max(common.peptides$protein_length.1)), 
+                     cex=0.8, cex.axis=0.6, cex.lab=0.6, pch=16, ps=28, lwd=2, lty=1, mgp=c(1.55,0.48,0), las=1)
+                mtext(paste(common.peptides$Uniprot.1[1],
+                            GN)
+                            ,side = 3, line = 0.5, cex=0.4);
+                
+                # Loop through every common peptides and calculate the Welch's t test ratio for each peptide pair
                 for (j in 1:nrow(common.peptides)){
+                        
+                        # Conditional coloring for modified peptides
+                        color <- ifelse(grepl("\\(",common.peptides$Peptide.1[j]) == TRUE,"red","black")
+                        # Plot out the segment ratio
+                        segments(x0=common.peptides$peptide_pos.1[j],
+                                y0=log2(common.peptides$ratio[j]),
+                                x1=common.peptides$peptide_pos.1[j]+nchar(as.character(common.peptides$Peptide.1[j])),
+                                y1=log2(common.peptides$ratio[j]),
+                                lwd=5, col=color)
                         
                         # This is a function from the BSDA package
                         welch.t <- tsum.test(mean.x=common.peptides$k.1[j],   s.x=common.peptides$dk.1[j], n.x=common.peptides$DP.1[j],
                                   mean.y=common.peptides$k.2[j], s.y=common.peptides$dk.2[j], n.y=common.peptides$DP.2[j])
                         
                         # Write out individual peptide ratios and p value
-                        peptide_summary <- paste(protein.list[i], GN, PN,
-                                                common.peptides$Peptide.1[j],common.peptides$z.1[j],
+                        peptide_summary <- paste(protein.list[i], GN, PN, common.peptides$protein_length.1[j],
+                                                common.peptides$Peptide.1[j],common.peptides$z.1[j], common.peptides$peptide_pos.1[j],
                                                 common.peptides$k.1[j],common.peptides$k.2[j],
                                                 common.peptides$ratio[j], welch.t$p.value,
                                                 sep = "\t")
@@ -249,3 +362,5 @@ for (i in 1:nrow(protein.list)) {
                 }
         }
 }
+
+dev.off()

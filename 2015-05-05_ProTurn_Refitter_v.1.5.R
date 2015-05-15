@@ -9,12 +9,12 @@
 R2_threshold <- 0.9    # R2 Threshold
 SE_threshold <- 0.05     # Standard Error of Estimate Threshold
 
-home_directory <- "~/Documents/Ping Lab/R Projects/proturn-grapher/test_refit"
-#home_directory <- "~/Documents/Ping Lab/Project Files/2015 Paraquat Turnover/8. Tempol Cyto"
+#home_directory <- "~/Documents/Ping Lab/R Projects/proturn-grapher/test_refit"
+home_directory <- "~/Documents/Ping Lab/Project Files/2015 Paraquat Turnover/6. Paraquat Cyto New"
 
 hl.out_location <- "hl.out"
 hl.data.out_location <- "hl-data.out"
-output_file <- "ProTurn_Output.txt"
+output_file <- "ProTurn_Refitted_Output.txt"
 
 annotation.location <- "~/Documents/Ping Lab/Heavy Water/ProTurn Output/Annotation file/10090_annotations.csv"
 ########################################
@@ -23,9 +23,10 @@ annotation.location <- "~/Documents/Ping Lab/Heavy Water/ProTurn Output/Annotati
 setwd(home_directory)
 annot <- read.csv(file=annotation.location)
 
-oput <- paste("Uniprot","Peptides", "Refitted k", "Refitted R2", sep = "\t")
-write(oput, file="Proturn_output.txt", append=T)
-pdf(file="Proturn_fit.pdf")
+oput <- paste("Uniprot","GN","PN","# Peptides", "DP", "Refitted k", "Refitted dk", "Refitted R2", sep = "\t")
+write(oput, file=output_file, append=T)
+
+pdf(file="Proturn_Combined_fit.pdf")
 par(mfrow=c(5,4), mar=c(2.2,2.2,2,2))
 hl.out <- read.table(hl.out_location, header=TRUE, fill=TRUE)
 dp <- read.table(hl.data.out_location, header=TRUE, fill=TRUE)
@@ -170,10 +171,12 @@ Refitted_LowerModel <-function(x){
 # Looping through the hl.out table, find the currect protein, then consider all the ID numbers in hl.data.out
 protein_list <- unique(dt$Uniprot)
 # This is the combined refitting graphing block
-for (c in 1:35){        
-#for (c in 1:length(protein_list)) { 
+#for (c in 1:35){        
+for (c in 1:length(protein_list)) { 
                 print(paste("Now refitting protein ", c, " of ", length(protein_list), ". ", round(c/length(protein_list)*100,2), "% done."))
-                 
+                GN <- annot[ which(annot$Uniprot == protein.list[c]),5]
+                PN <- annot[ which(annot$Uniprot == protein.list[c]),3]
+                
                 all_peptides_of_protein <- dt[ which(dt$Uniprot == protein_list[c]),]  # Subsetting that particular ID
                 
                 tally <- dp$ID  %in% all_peptides_of_protein$ID
@@ -181,8 +184,6 @@ for (c in 1:35){
                 
                         #dkTable <- sapply(ds$t,Calculate_dk)
                         #dk <- min(abs(dkTable))
-                
-
                         #Upper <- dt$k[c]+dk
                         #Lower <- dt$k[c]^2/(dt$k[c]+dk)
                         #Model_Predicted <- sapply(ds$t,Model)
@@ -229,7 +230,7 @@ for (c in 1:35){
                 curve(Refitted_UpperModel(x), from=0, to=max(dp$t), col=rgb(100,0,0,50,maxColorValue=255), add=TRUE)
                 curve(Refitted_LowerModel(x), from=0, to=max(dp$t), col=rgb(100,0,0,50,maxColorValue=255), add=TRUE)
                 
-                oput <- paste(protein_list[c],nrow(all_peptides_of_protein), Optimize$minimum, Refitted_R2, sep = "\t")
+                oput <- paste(protein_list[c],GN,PN,nrow(all_peptides_of_protein),nrow(ds), Optimize$minimum, dk, Refitted_R2, sep = "\t")
                 
                 write(oput, file=output_file, append=T)
         }     

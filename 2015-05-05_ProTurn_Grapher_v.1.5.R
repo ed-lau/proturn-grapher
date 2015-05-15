@@ -10,8 +10,8 @@ R2_threshold <- 0.81    # R2 Threshold
 SE_threshold <- 0.1     # Standard Error of Estimate Threshold
 
 #home_directory <- "~/Documents/Ping Lab/R Projects/proturn-grapher/mitotempo cyto"
-home_directory <- "~/Documents/Ping Lab/Project Files/2015 Isoform Turnover/iso"
-
+#home_directory <- "~/Documents/Ping Lab/Project Files/2015 Isoform Turnover/Data/iso/iso mouse heart cyto"
+home_directory <- "~/Documents/Ping lab/Project Files/2015 Paraquat Turnover/8. Tempol Cyto New"
 hl.out_location <- "hl.out"
 hl.data.out_location <- "hl-data.out"
 output_file <- "ProTurn_Output.txt"
