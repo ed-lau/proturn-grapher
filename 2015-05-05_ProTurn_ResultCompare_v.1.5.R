@@ -13,8 +13,8 @@
 home_directory <- "~/Documents/Ping Lab/Project Files/2015 Paraquat Turnover/" # Working directory. Need back slach "/" at the end
 
 #dataset1.directory <- "Data/ctrl/ctrl mouse heart cyto/"                              # The Proturn grapher output file for dataset 1, e.g., control hearts
-#dataset2.directory <- "Data/iso/iso mouse heart cyto/"                              # The Proturn grapher output file for dataset 2, e.g., iso hearts
-dataset1.directory <- "5. Vehicle Cyto/"                              # The Proturn grapher output file for dataset 1, e.g., control hearts
+#dataset2.directory <- "Data/ctrl/ctrl mouse heart mito/"                              # The Proturn grapher output file for dataset 2, e.g., iso hearts
+dataset1.directory <- "5. Vehicle Cyto New/"                              # The Proturn grapher output file for dataset 1, e.g., control hearts
 dataset2.directory <- "6. Paraquat Cyto New/"                              # The Proturn grapher output file for dataset 2, e.g., iso hearts
 
 
@@ -57,6 +57,7 @@ summary <- paste(
         "peptides.1","k.median.1","k.mad.1","k.cv.1", 
         "peptides.2","k.median.2","k.mad.2","k.cv.2",
         "ratio", "Wilcoxon.test", "T test",
+        "shared.pep","k.median.shared.pep.1","k.median.shared.pep.2","ratio.shared.pep","paired.T","shared.wilcox",
         sep = "\t")
 write(summary, file=comparison_output, append=T)
 
@@ -160,6 +161,12 @@ par(mfrow=c(5,4), mar=c(2.2,2.2,2,2))
 #for (i in 6){
 for (i in 1:nrow(protein.list)) {
         
+        common_k1 <- NA
+        common_k2 <- NA
+        ratio_shared <- NA
+        T_shared_results <- NA
+        W_shared_results <- NA
+        
         print(paste("Now running Protein # ", i, " of ", nrow(protein.list), ". ", round(i/nrow(protein.list)*100,2), "% done."))
         subset.output.1 <- peptide.output.1[ which(peptide.output.1$Uniprot == protein.list[i]), ]
         subset.output.2 <- peptide.output.2[ which(peptide.output.2$Uniprot == protein.list[i]), ]
@@ -188,6 +195,7 @@ for (i in 1:nrow(protein.list)) {
         # Annotate gene name and protien name
         GN <- annot[ which(annot$Uniprot == protein.list[i]),5]
         PN <- annot[ which(annot$Uniprot == protein.list[i]),3]
+        
         
         # Perform Mann Whitney U test
         if (nrow(subset.output.1) >= 3 && nrow(subset.output.2) >= 3) {
@@ -234,11 +242,57 @@ for (i in 1:nrow(protein.list)) {
                 }
         }
         
+        
+        # Subset out the common peptides, calculate k and ratios and paired t-test p value.
+        if (nrow(subset.output.1) > 0) {
+                subset.output.1$concat <- NA
+                for (j in 1:nrow(subset.output.1)){
+                        # Concatenated (peptide + charge) peptide identifier for normal analysis (not combining organelles)
+                        subset.output.1$concat[j] <- paste(subset.output.1$Peptide[j],subset.output.1$z[j], sep="")
+                }
+        }
+        
+        # Then for Sample 2
+        if (nrow(subset.output.2) > 0) {
+                subset.output.2$concat <- NA
+                for (j in 1:nrow(subset.output.2)){
+                        # Concatenated (peptide + charge) peptide identifier for normal analysis (not combining organelles)
+                        subset.output.2$concat[j] <- paste(subset.output.2$Peptide[j],subset.output.2$z[j], sep="")
+                }
+        }
+        
+        # If there are exact peptide-charge matches between sample 1 and sample 2, subset out the common peptides.
+        if (nrow(subset.output.1) > 0 & nrow(subset.output.2) >0 ) {
+                # Subset out the list of common peptides from subset.output.1
+                common.peptides.1 <- subset.output.1[ which(subset.output.1$concat %in% subset.output.2$concat), ]
+                common.peptides.1 <- common.peptides.1[order(common.peptides.1$concat),]
+                colnames(common.peptides.1) <- paste(colnames(common.peptides.1),".1",sep="")
+                # Subset out the list of common peptides from subset.output.2
+                common.peptides.2 <- subset.output.2[ which(subset.output.2$concat %in% subset.output.1$concat), ]
+                common.peptides.2 <- common.peptides.2[order(common.peptides.2$concat),]
+                colnames(common.peptides.2) <- paste(colnames(common.peptides.2),".2",sep="")
+                
+                # Combine the two tables into one!
+                common.peptides <- cbind(common.peptides.1,common.peptides.2)
+                
+                # Calculate the median k of proteins 1 and 2 among common peptides
+                common_k1 <- median(common.peptides$k.1)
+                common_k2 <- median(common.peptides$k.2)
+                ratio_shared <- common_k2/common_k1
+                if (nrow(common.peptides) >2 ) {
+                T_shared <- t.test(common.peptides$k.1, common.peptides$k.2, paired=TRUE)
+                T_shared_results <- T_shared$p.value
+                W_shared <- wilcox.test(common.peptides$k.1, common.peptides$k.2, paired=TRUE)
+                W_shared_results <- W_shared$p.value
+                }
+        }
+        
         # Write out summary for output
         summary <- paste(protein.list[i], GN, PN, 
                          nrow(subset.output.1), protein.median.1, protein.mad.1, protein.cv.1, 
                          nrow(subset.output.2), protein.median.2, protein.mad.2, protein.cv.2, 
                          protein.ratio, Utest$p.value, Ttest$p.value,
+                         nrow(common.peptides),common_k1, common_k2, ratio_shared, T_shared_results,W_shared_results,
                          sep = "\t")
         write(summary, file=comparison_output, append=T)
         }
@@ -259,7 +313,7 @@ peptide_summary <- paste(
 write(peptide_summary, file=peptide_comparison_output, append=T)
 
 # Graphical output parameters
-pdf(file="Proturn_Peptide_fit.pdf")
+pdf(file="Proturn_Peptide_Compare.pdf")
 par(mfrow=c(5,3), mar=c(2.2,2.2,2,2))
 
 
@@ -275,8 +329,9 @@ for (i in 1:nrow(protein.list)) {
         GN <- annot[ which(annot$Uniprot == protein.list[i]),5]
         PN <- annot[ which(annot$Uniprot == protein.list[i]),3]
         
+        # Add a new column which concatenates peptide and charge to become a unique identifier for peptide 
         
-        # Add a new column which concatenates peptide and charge to become a unique identifier for peptide        
+        # First for Sample 1
         if (nrow(subset.output.1) > 0) {
                 subset.output.1$concat <- NA
                 subset.output.1$protein_length <- NA
@@ -287,12 +342,14 @@ for (i in 1:nrow(protein.list)) {
                         # If you are using combined organelle files, also paste the first character of the modified IDs
                         #subset.output.1$concat[j] <- paste(subset.output.1$Peptide[j],subset.output.1$z[j],substr(subset.output.1$ID[j],1,1), sep="")
                         
+                        # Getting protein length and sequence length for each peptide
                         sequence <- Get_local_sequence(subset.output.1$Uniprot[j],subset.output.1$Peptide[j])
                         subset.output.1$protein_length[j] <- unlist(sequence[1])
                         subset.output.1$peptide_pos[j] <- unlist(sequence[2])
                 }
         }
         
+        # Then for Sample 2
         if (nrow(subset.output.2) > 0) {
                 subset.output.2$concat <- NA
                 subset.output.2$protein_length <- NA
@@ -303,12 +360,14 @@ for (i in 1:nrow(protein.list)) {
                         # If you are using combined organelle files, also paste the first character of the modified IDs
                         #subset.output.2$concat[j] <- paste(subset.output.2$Peptide[j],subset.output.2$z[j],substr(subset.output.2$ID[j],1,1), sep="")
                         
+                        # Getting protein length and sequence length for each peptide
                         sequence <- Get_local_sequence(subset.output.2$Uniprot[j],subset.output.2$Peptide[j])
                         subset.output.2$protein_length[j] <- unlist(sequence[1])
                         subset.output.2$peptide_pos[j] <- unlist(sequence[2])
                 }
         }
         
+        # If there are exact peptide-charge matches between sample 1 and sample 2, subset out the common peptides.
         if (nrow(subset.output.1) > 0 & nrow(subset.output.2) >0 ) {
         # Subset out the list of common peptides from subset.output.1
         common.peptides.1 <- subset.output.1[ which(subset.output.1$concat %in% subset.output.2$concat), ]
@@ -321,11 +380,11 @@ for (i in 1:nrow(protein.list)) {
         
         # Combine the two tables into one!
         common.peptides <- cbind(common.peptides.1,common.peptides.2)
-        # Calculate ratios
+        
+        # Calculate ratios of all common peptides between Sample 1 and Sample 2
         common.peptides$ratio <- common.peptides$k.2/common.peptides$k.1
                 
-       
-        # If there are common peptides between two samples for this protein, plot graph and calculate statistics.
+        # If there are common peptides between the two Samples for this protein, plot graphs and calculate statistics.
         if  (nrow(common.peptides) > 0){
                 
                 # Preparing the plot
@@ -338,12 +397,24 @@ for (i in 1:nrow(protein.list)) {
                 # Loop through every common peptides and calculate the Welch's t test ratio for each peptide pair
                 for (j in 1:nrow(common.peptides)){
                         
-                        # Conditional coloring for modified peptides
-                        color <- ifelse(grepl("\\(",common.peptides$Peptide.1[j]) == TRUE,"red","black")
+                        
+                        # R's if-else syntax. Matching colors to modifications.
+                        if(grepl("(42.0106)",common.peptides$Peptide.1[j]) == TRUE) {
+                                color <- "red"
+                        } else if(grepl("(114.042927)",common.peptides$Peptide.1[j]) == TRUE){
+                                color <- "purple"
+                        } else if (grepl("(79.9663)",common.peptides$Peptide.1[j]) == TRUE){
+                                color <- "green"
+                        } else if (grepl("\\(",common.peptides$Peptide.1[j]) == TRUE){
+                                color <- "grey"
+                        } else {
+                                color <- "black"
+                        }
+                        
                         # Plot out the segment ratio
                         segments(x0=common.peptides$peptide_pos.1[j],
                                 y0=log2(common.peptides$ratio[j]),
-                                x1=common.peptides$peptide_pos.1[j]+nchar(as.character(common.peptides$Peptide.1[j])),
+                                x1=common.peptides$peptide_pos.1[j] + nchar(as.character(gsub( " *\\(.*?\\) *", "", common.peptides$Peptide.1[j]))),
                                 y1=log2(common.peptides$ratio[j]),
                                 lwd=5, col=color)
                         

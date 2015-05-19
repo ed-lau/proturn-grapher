@@ -6,19 +6,24 @@
 ########################################
 
 ############## USER INPUT ##############
-R2_threshold <- 0.81    # R2 Threshold
-SE_threshold <- 0.1     # Standard Error of Estimate Threshold
+R2_threshold <- 0.9 # 0.9    # R2 Threshold
+SE_threshold <- 0.01 # 0.01    # Standard Error of Estimate Threshold
 
 #home_directory <- "~/Documents/Ping Lab/R Projects/proturn-grapher/mitotempo cyto"
-#home_directory <- "~/Documents/Ping Lab/Project Files/2015 Isoform Turnover/Data/iso/iso mouse heart cyto"
-home_directory <- "~/Documents/Ping lab/Project Files/2015 Paraquat Turnover/8. Tempol Cyto New"
+#home_directory <- "~/Documents/Ping Lab/Project Files/2015 Isoform Turnover/Data/ctrl/ctrl mouse heart mito"
+home_directory <- "~/Documents/Ping lab/Project Files/2015 Paraquat Turnover/6. Paraquat Cyto New"
 hl.out_location <- "hl.out"
 hl.data.out_location <- "hl-data.out"
 output_file <- "ProTurn_Output.txt"
 
-Refit <- FALSE           # Should the Grapher attempt to combine all peptides and refit the kinetic curve.
+Refit <- FALSE           # Should the Grapher attempt to gather the data points for each peptide and refit the kinetic curve in R.
+
+local_fasta_location <- "~/Documents/Ping Lab/Project Files/2015 Isoform Turnover/Fasta/Swissprot_Mouse_16689entries_20141219.fasta"
+#local_fasta_location <- "~/Documents/Ping Lab/Project Files/2015 Isoform Turnover/Fasta/Swissprot_Human_20187entries_20141228.fasta"
 
 annotation.location <- "~/Documents/Ping Lab/Heavy Water/ProTurn Output/Annotation file/10090_annotations.csv"
+#annotation.location <- "~/Documents/Ping Lab/Heavy Water/ProTurn Output/Annotation file/9606_annotations.csv"
+
 ########################################
 
 ############## LOADING FILES ##############
@@ -26,17 +31,20 @@ setwd(home_directory)
 annot <- read.csv(file=annotation.location)
 
 oput <- paste("ID","Uniprot","Peptide","z","R2","SS","SE","k","dk","DP","a","pss","kp","N", sep = "\t")
-write(oput, file="Proturn_output.txt", append=T)
+write(oput, file=output_file, append=T)
+
+# Preparing the graph
 pdf(file="Proturn_fit.pdf")
 par(mfrow=c(5,4), mar=c(2.2,2.2,2,2))
+
+# Reading hl.out and hl-data.out
 hl.out <- read.table(hl.out_location, header=TRUE, fill=TRUE)
 dp <- read.table(hl.data.out_location, header=TRUE, fill=TRUE)
 dp <- dp[,1:3]
 
 # Calculate the Standard Error of Estimate from SS (Sums of Squares) based on SE = (SS/DP-1)^0.5
-SE <- (hl.out$SS/(hl.out$DP-1))^0.5
-hl.out <- cbind(hl.out,SE)
-rm(SE)
+hl.out$SE <- (hl.out$SS/(hl.out$DP-1))^0.5
+
 # Subsetting the hl.out table to house only those peptides that pass the threshold
 dt <- hl.out[ which(hl.out$R2 >= R2_threshold | hl.out$SE <= SE_threshold),] # Subsetting by R2 and SS
 
@@ -154,8 +162,7 @@ Refitting_Function_Core <-function(x){
       
                 b <- factorial(N)/(factorial(n)*factorial(N-n))*(1-pss)^(N-n)*(pss)^n
                 bp <- (current_k/(current_k-n*kp))*b
-                y<- a*(bp*exp(-n*kp*x)+exp(-current_k*x)*(1/(N+1)-bp))                                                                  
-
+                #y<- a*(bp*exp(-n*kp*x)+exp(-current_k*x)*(1/(N+1)-bp))                                                                  
                 y<- (bp*exp(-n*kp*x)+exp(-current_k*x)*(1/(N+1)-bp))
                 z <- y + z}
                 final <- (z-1)/((1-pss)^N-1)
@@ -175,6 +182,38 @@ Refitted_Model <-function(x){
         }
 
 
+# This function reads the local fasta file
+Read_local_fasta <- function(file) {
+        # Read the file line by line
+        fasta<-readLines(file)
+        # Identify header lines
+        ind<-grep(">", fasta)
+        # Identify the sequence lines
+        s<-data.frame(ind=ind, from=ind+1, to=c((ind-1)[-1], length(fasta)))
+        # Process sequence lines
+        seqs<-rep(NA, length(ind))
+        for(i in 1:length(ind)) {
+                seqs[i]<-paste(fasta[s$from[i]:s$to[i]], collapse="")
+        }
+        #Create a data frame 
+        DF<-data.frame(name=gsub(">", "", fasta[ind]), sequence=seqs)
+        # Return the data frame as a result object from the function
+        return(DF)
+}
+
+## This function gets individual peptide sequences from the local fasta file (fast)
+Get_local_sequence <- function(Uniprot,peptide) {
+        
+        peptide <- gsub( " *\\(.*?\\) *", "", peptide)        
+        
+        Local_sequence <- Local_fasta[grep(Uniprot,Local_fasta$name),2]
+        
+        protein_length <- nchar(as.character(Local_sequence))
+        
+        position <- regexpr(peptide,Local_sequence,fixed=TRUE)
+        starting_pos <- position[1]
+        result <- list(protein_length,starting_pos)
+}
 ########################################
 
 ############## MAIN #####################
@@ -242,7 +281,7 @@ for (c in 1:nrow(dt)) {
 }
 }
 
-# This is the combined refitting graphing block
+# This is the refitting graphing block
 if (Refit == TRUE){
         for (c in 1:nrow(dt)) { 
                 print(paste("Now refitting peptide ", c, " of ", nrow(dt), ". ", round(c/nrow(dt)*100,2), "% done."))
@@ -321,7 +360,7 @@ if (Refit == TRUE){
 }        
 dev.off()
 
-# Code for protein summary graphs
+############ Code for protein summary graphs ################################################
 library("beeswarm")
 op <- read.table(output_file, header=TRUE, fill=TRUE)
 attach(op)
@@ -332,29 +371,48 @@ pdf(file="Proturn_summary.pdf", width=length(protein_count)*0.2) # Automatically
 beeswarm(log10(op$k)~ordered_Uniprot, method=c("swarm"),cex=0.8, ylim=c(-3,0.5), las=3)#pwcol=Organ
 bxplot(log10(op$k)~ordered_Uniprot, data=op, add=1)
 dev.off()
+################################################################################################
+
+############ OUTPUT SUMMARY OF PROTEIN MEDIANS AND DEVIATIONS, PLOT OUT POSITIONAL K ###############
+
+# Reading the ProTurn Output file from the Grapher
+peptide.output <- read.table(output_file, header=TRUE, fill=TRUE)
+protein.list <- unique(peptide.output$Uniprot)
 
 
+# Read the FASTA file
+Local_fasta <- Read_local_fasta(local_fasta_location)
 
+# Preparing the Graphical output file
+pdf(file="Proturn_Peptide_Positions.pdf")
+par(mfrow=c(5,3), mar=c(2.2,2.2,2,2))
 
-############ OUTPUT SUMMARY OF PROTEIN MEDIANS AND DEVIATIONS ###############
-peptide.output <- read.table("Proturn_output.txt", header=TRUE, fill=TRUE)
-
+# Preparing the Summary file (headers)
 summary <- paste("Uniprot", "GeneName","ProteinName","No. Peptides",
                  "k.mean", "k.sd", "k.mean.cv",
                  "k.median","k.mad","k.median.cv",
                  "normality",
                  sep = "\t")
-
-
 write(summary, file="Proturn_protein_summary.txt", append=T)
 
 
-#Looping over unique Uniprot ID to get the median of k values
-for (i in unique(peptide.output$Uniprot)) {
-        subset <- peptide.output[ which(peptide.output$Uniprot == i), ]
+#Looping over unique Uniprot ID to get the median of k values from all peptides, etc.
+for (i in 1:length(protein.list)) {
+        print(paste("Now summarizing Protein # ", i, " of ", length(protein.list), ". ", round(i/length(protein.list)*100,2), "% done."))
+        
+        # Get the annotations
+        GN <- annot[ which(annot$Uniprot == as.character(protein.list[i])),5]
+        PN <- annot[ which(annot$Uniprot == as.character(protein.list[i])),3]
+        
+        # Subset the current protein being considered
+        subset <- peptide.output[ which(peptide.output$Uniprot == protein.list[i]), ]
+        
+        # Calculate median and mean of the k values of all peptides for this protein
         protein.median <- median(subset$k)
         protein.mean <- mean(subset$k)
         
+        
+        # If there are more than one peptide in this protein, calculate median absolute deviation and standard deviation
         if (nrow(subset) > 1) {
                 protein.mad <- mad(subset$k)
                 protein.sd <- sd(subset$k)
@@ -364,16 +422,72 @@ for (i in unique(peptide.output$Uniprot)) {
                 protein.sd <- NA
         }
         
-        if (nrow(subset) >= 3) {
+ 
+        
+        # If there are three or more peptides in this protein, test whether they are normally distributed
+        if (nrow(subset) >= 3 & sd(subset$k) != 0) {
                 normality <- shapiro.test(subset$k)
         }
         else { normality <- shapiro.test(c(1,2,1)) }    # Just forcing a p value of 0 (assume non-normal distributed)
         
-        
+        # Calculate CV
         protein.median.cv <- protein.mad/protein.median
         protein.mean.cv <- protein.sd/protein.mean
-        GN <- annot[ which(annot$Uniprot == i),5]
-        PN <- annot[ which(annot$Uniprot == i),3]
-        summary <- paste(subset$Uniprot[1], GN, PN, nrow(subset), protein.mean, protein.sd, protein.mean.cv, protein.median, protein.mad, protein.median.cv, normality$p.value, sep = "\t")
+
+        # Write out the Summary
+        summary <- paste(subset$Uniprot[1], GN, PN, 
+                         nrow(subset), protein.mean, protein.sd, 
+                         protein.mean.cv, protein.median, protein.mad, 
+                         protein.median.cv, normality$p.value, 
+                         sep = "\t")
         write(summary, file="Proturn_protein_summary.txt", append=T)
+        
+        ######## Plot the position vs. k graph
+        
+        # Filling in the protein length and peptide sequence length for each peptide in the protein
+        subset$protein_length <- NA
+        subset$peptide_pos <- NA
+        
+        for (j in 1:nrow(subset)) {
+                # Getting protein length and sequence length for each peptide
+                sequence <- Get_local_sequence(subset$Uniprot[j],subset$Peptide[j])
+                subset$protein_length[j] <- unlist(sequence[1])
+                subset$peptide_pos[j] <- unlist(sequence[2])
+                }
+        
+        # Preparing the plot
+        plot(-10, -10, xlab="Pos", ylab="log2 k", ylim=c(-8,1), xlim=c(0,max(subset$protein_length)), 
+             cex=0.8, cex.axis=0.6, cex.lab=0.6, pch=16, ps=28, lwd=2, lty=1, mgp=c(1.55,0.48,0), las=1)
+        mtext(paste(subset$Uniprot[1],GN),
+              side = 3, line = 0.5, cex=0.4)
+        
+        for (j in 1:nrow(subset)){
+                # Conditional coloring for modified peptides
+                
+                
+                # R's if-else syntax. Matching colors to modifications.
+                if(grepl("(42.0106)",subset$Peptide[j]) == TRUE) {
+                        color <- "red"
+                        } else if(grepl("(114.042927)",subset$Peptide[j]) == TRUE){
+                                color <- "purple"
+                                } else if (grepl("(79.9663)",subset$Peptide[j]) == TRUE){
+                                        color <- "green"
+                                        } else if (grepl("\\(",subset$Peptide[j]) == TRUE){
+                                                color <- "grey"
+                                        } else {
+                                                color <- "black"
+                                        }
+                        
+                
+                # Plot out the segment ratio
+                segments(x0=subset$peptide_pos[j],
+                         y0=log2(subset$k[j]),
+                         x1=subset$peptide_pos[j] + nchar(as.character(gsub( " *\\(.*?\\) *", "", subset$Peptide[j]))),
+                         y1=log2(subset$k[j]),
+                         lwd=5, col=color)
+                }
         }
+dev.off()
+
+
+

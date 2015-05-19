@@ -7,7 +7,7 @@
 
 ############## USER INPUT ##############
 R2_threshold <- 0.9    # R2 Threshold
-SE_threshold <- 0.05     # Standard Error of Estimate Threshold
+SE_threshold <- 0.01     # Standard Error of Estimate Threshold
 
 #home_directory <- "~/Documents/Ping Lab/R Projects/proturn-grapher/test_refit"
 home_directory <- "~/Documents/Ping Lab/Project Files/2015 Paraquat Turnover/6. Paraquat Cyto New"
@@ -174,11 +174,15 @@ protein_list <- unique(dt$Uniprot)
 #for (c in 1:35){        
 for (c in 1:length(protein_list)) { 
                 print(paste("Now refitting protein ", c, " of ", length(protein_list), ". ", round(c/length(protein_list)*100,2), "% done."))
-                GN <- annot[ which(annot$Uniprot == protein.list[c]),5]
-                PN <- annot[ which(annot$Uniprot == protein.list[c]),3]
                 
+                # Get the annotations for the protein being considered
+                GN <- annot[ which(annot$Uniprot == as.character(protein_list[c])),5]
+                PN <- annot[ which(annot$Uniprot == as.character(protein_list[c])),3]
+                
+                # Subset all peptides for the protein being currently considered
                 all_peptides_of_protein <- dt[ which(dt$Uniprot == protein_list[c]),]  # Subsetting that particular ID
                 
+                # Subset all data points for all peptides for the protein being currently considered
                 tally <- dp$ID  %in% all_peptides_of_protein$ID
                 ds <- dp[tally,]
                 
@@ -189,23 +193,25 @@ for (c in 1:length(protein_list)) {
                         #Model_Predicted <- sapply(ds$t,Model)
                         #Model_R2 <- 1- (sum((ds$FS-Model_Predicted)^2))/(sum((ds$FS-mean(ds$FS))^2))
                 
+                # Calculate the Fractional Synthesis for each data point
                 for (i in 1:nrow(ds)) {
                         ds$FS[i] <- Refit_Calculate_FS(ds$A0[i])
                 }
+                
                 # This is the optimization function that tries out different k values and plug into the Refitting function. Optimzation$par will give you the now optimized K. 
-
                 Optimize <- optimize(Refitting_Function,c(0,5),tol=0.001)
                 # This is the KL function that takes in different values of k and return 1 minus R2 value, which the optim function will try to minimize
                 
-
-                
+                # Calculate the R2 of the refitting, the sum of squares of the refitting, and the standard deviation
                 Refitted_Predicted <- sapply(ds$t,Refitted_Model)
                 Refitted_R2 <- 1- (sum((ds$FS-Refitted_Predicted)^2))/(sum((ds$FS-mean(ds$FS))^2))
                 Refitted_SS <- sum((ds$FS-Refitted_Predicted)^2)
                 Refitted_SD <- (mean((ds$FS-Refitted_Predicted)^2))^0.5
                 
+                # Calculate dk based on the equation for dA/dk (Using SS as dA)
                 dk <- min(abs(sapply(ds$t,Calculate_Refitted_dk)))
                 
+                # Calculate the Upper bound and Lower bound of the fitted k using dk
                 Refitted_Upper <- Optimize$minimum + dk
                 Refitted_Lower <- Optimize$minimum^2/(Optimize$minimum+dk)
                 
@@ -236,6 +242,3 @@ for (c in 1:length(protein_list)) {
         }     
        
 dev.off()
-
-
-
