@@ -41,12 +41,13 @@ hl.data.1 <- read.table(paste(dataset1.directory,"hl-data.out",sep=""), header=T
 hl.data.2 <- read.table(paste(dataset2.directory,"hl-data.out",sep=""), header=TRUE, fill=TRUE)
 
 # Get Proturn Grapher output
-peptide.output.1 <- read.table(paste(dataset1.directory,"Proturn_output.txt",sep=""), header=TRUE, fill=TRUE)
-peptide.output.2 <- read.table(paste(dataset2.directory,"Proturn_output.txt",sep=""), header=TRUE, fill=TRUE)
+refitted.output.1 <- read.table(paste(dataset1.directory,"Proturn_Refitted_Output.txt",sep=""), header=TRUE, fill=TRUE)
+refitted.output.2 <- read.table(paste(dataset2.directory,"Proturn_Refitted_Output.txt",sep=""), header=TRUE, fill=TRUE)
 
 
-proteins.in.output.1 <-  as.matrix(peptide.output.1$Uniprot)
-proteins.in.output.2 <-  as.matrix(peptide.output.2$Uniprot)
+# Generate protein list (all unique UniProt)
+proteins.in.output.1 <-  as.matrix(refitted.output.1$Uniprot)
+proteins.in.output.2 <-  as.matrix(refitted.output.2$Uniprot)
 
 protein.list <- unique(
                 rbind(proteins.in.output.1,proteins.in.output.2)
@@ -154,7 +155,7 @@ Local_fasta <- Read_local_fasta(local_fasta_location)
 ################## MAIN LOOP (PROTEIN OUTPUT) ####################
 
 # Graphical output parameters
-pdf(file="Proturn_fit.pdf")
+pdf(file="Proturn_Refitted_Compare_fit.pdf")
 par(mfrow=c(5,4), mar=c(2.2,2.2,2,2))
 
 #Loop through all Uniprot IDs in the protein list, and extract all the peptides from either result files that belong to the protein.
@@ -168,26 +169,11 @@ for (i in 1:nrow(protein.list)) {
         W_shared_results <- NA
         
         print(paste("Now running Protein # ", i, " of ", nrow(protein.list), ". ", round(i/nrow(protein.list)*100,2), "% done."))
-        subset.output.1 <- peptide.output.1[ which(peptide.output.1$Uniprot == protein.list[i]), ]
-        subset.output.2 <- peptide.output.2[ which(peptide.output.2$Uniprot == protein.list[i]), ]
+        subset.output.1 <- refitted.output.1[ which(refitted.output.1$Uniprot == protein.list[i]), ]
+        subset.output.2 <- refitted.output.2[ which(refitted.output.2$Uniprot == protein.list[i]), ]
         
         protein.median.1 <- median(subset.output.1$k)
         protein.median.2 <- median(subset.output.2$k)
-
-        # Calculate median absolute deviation
-        if (length(subset.output.1$k) > 1) {
-                protein.mad.1 <- mad(subset.output.1$k)
-                }
-        else {protein.mad.1 <- NA}
-
-        if (length(subset.output.2$k) > 1) {
-                protein.mad.2 <- mad(subset.output.2$k)
-        }
-        else { protein.mad.2 <- NA}
-        
-        # Calculate protein CV
-        protein.cv.1 <- protein.mad.1/protein.median.1
-        protein.cv.2 <- protein.mad.2/protein.median.2
         
         # Calculate protein ratio
         protein.ratio <- protein.median.2/protein.median.1

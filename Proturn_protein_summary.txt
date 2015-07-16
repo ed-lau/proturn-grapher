@@ -1,0 +1,2 @@
+Uniprot	GeneName	ProteinName	No. Peptides	k.mean	k.sd	k.mean.cv	k.median	k.mad	k.median.cv	normality
+NA			0	NaN	NA	NA	NA	NA	NA	0

@@ -11,7 +11,7 @@ SE_threshold <- 0.01 # 0.01    # Standard Error of Estimate Threshold
 
 #home_directory <- "~/Documents/Ping Lab/R Projects/proturn-grapher/mitotempo cyto"
 #home_directory <- "~/Documents/Ping Lab/Project Files/2015 Isoform Turnover/Data/hmdp/c57 iso"
-home_directory <- "~/Documents/Ping lab/Project Files/2015 Paraquat Turnover/6. Paraquat Cyto"
+home_directory <- "~/Documents/Ping lab/Project Files/2015 Paraquat Turnover/Data/6. Paraquat Cyto"
 hl.out_location <- "hl.out"
 hl.data.out_location <- "hl-data.out"
 output_file <- "ProTurn_Output.txt"
@@ -21,7 +21,7 @@ Refit <- FALSE           # Should the Grapher attempt to gather the data points 
 local_fasta_location <- "~/Documents/Ping Lab/Project Files/2015 Isoform Turnover/Fasta/Swissprot_Mouse_16689entries_20141219.fasta"
 #local_fasta_location <- "~/Documents/Ping Lab/Project Files/2015 Isoform Turnover/Fasta/Swissprot_Human_20187entries_20141228.fasta"
 
-annotation.location <- "~/Documents/Ping Lab/Heavy Water/ProTurn Output/Annotation file/10090_annotations.csv"
+annotation.location <- "~/Documents/Ping Lab/Project Files/2015 Paraquat Turnover/Annotation file/Uniprot_musmusculus_annotations.csv"
 #annotation.location <- "~/Documents/Ping Lab/Heavy Water/ProTurn Output/Annotation file/9606_annotations.csv"
 
 ########################################
@@ -275,7 +275,7 @@ for (c in 1:nrow(dt)) {
 #curve(Rescaled_UpperModel(x), from=0, to=max(dp$t), col=rgb(100,0,0,50,maxColorValue=255), add=TRUE)
 #curve(Rescaled_LowerModel(x), from=0, to=max(dp$t), col=rgb(100,0,0,50,maxColorValue=255), add=TRUE)
 
-         oput <- paste(dt$ID[c],dt$Uniprot[c], dt$Peptide[c], dt$z[c], round(dt$R2[c],3), round(dt$SS[c],4), round(dt$SE[c],4), round(dt$k[c],3), round(dk,3), dt$DP[c], round(dt$a[c],3), round(dt$pss[c],4), dt$kp[c], dt$N[c], sep = "\t")
+         oput <- paste(dt$ID[c],dt$Uniprot[c], dt$Peptide[c], dt$z[c], round(dt$R2[c],3), round(dt$SS[c],4), round(dt$SE[c],4), round(log2(dt$k[c]),3), round(log2(dk),3), dt$DP[c], round(dt$a[c],3), round(dt$pss[c],4), dt$kp[c], dt$N[c], sep = "\t")
 
         write(oput, file=output_file, append=T)
 }
@@ -353,7 +353,7 @@ if (Refit == TRUE){
                 #curve(Rescaled_UpperModel(x), from=0, to=max(dp$t), col=rgb(100,0,0,50,maxColorValue=255), add=TRUE)
                 #curve(Rescaled_LowerModel(x), from=0, to=max(dp$t), col=rgb(100,0,0,50,maxColorValue=255), add=TRUE)
                 
-                oput <- paste(dt$ID[c],dt$Uniprot[c], dt$Peptide[c], dt$z[c], round(dt$R2[c],3), round(dt$SS[c],4), round(dt$SE[c],4), round(dt$k[c],3), round(dk,3), dt$DP[c], round(dt$a[c],3), round(dt$pss[c],4), dt$kp[c], dt$N[c], sep = "\t")
+                oput <- paste(dt$ID[c],dt$Uniprot[c], dt$Peptide[c], dt$z[c], round(dt$R2[c],3), round(dt$SS[c],4), round(dt$SE[c],4), round(log2(dt$k[c]),3), round(log2(dk),3), dt$DP[c], round(dt$a[c],3), round(dt$pss[c],4), dt$kp[c], dt$N[c], sep = "\t")
                 
                 write(oput, file=output_file, append=T)
         }     
@@ -368,8 +368,8 @@ temp_order <- aggregate(op$k, list(Uniprot), median, na.rm = TRUE)
 ordered_Uniprot <- factor(Uniprot, levels = temp_order[order(temp_order$x), 1])
 protein_count <- unique(unlist(op$Uniprot, use.names=FALSE))
 pdf(file="Proturn_summary.pdf", width=length(protein_count)*0.2) # Automatically adjusts width based on number of proteins from output
-beeswarm(log10(op$k)~ordered_Uniprot, method=c("swarm"),cex=0.8, ylim=c(-3,0.5), las=3)#pwcol=Organ
-bxplot(log10(op$k)~ordered_Uniprot, data=op, add=1)
+beeswarm(op$k~ordered_Uniprot, method=c("swarm"),cex=0.8, ylim=c(-3,0.5), las=3)#pwcol=Organ
+bxplot(op$k~ordered_Uniprot, data=op, add=1)
 dev.off()
 ################################################################################################
 
@@ -401,8 +401,8 @@ for (i in 1:length(protein.list)) {
         print(paste("Now summarizing Protein # ", i, " of ", length(protein.list), ". ", round(i/length(protein.list)*100,2), "% done."))
         
         # Get the annotations
-        GN <- annot[ which(annot$Uniprot == as.character(protein.list[i])),5]
-        PN <- annot[ which(annot$Uniprot == as.character(protein.list[i])),3]
+        GN <- annot[ which(annot$Entry == as.character(protein.list[i])),"Gene.names"]
+        PN <- annot[ which(annot$Entry == as.character(protein.list[i])),"Protein.names"]
         
         # Subset the current protein being considered
         subset <- peptide.output[ which(peptide.output$Uniprot == protein.list[i]), ]
@@ -481,9 +481,9 @@ for (i in 1:length(protein.list)) {
                 
                 # Plot out the segment ratio
                 segments(x0=subset$peptide_pos[j],
-                         y0=log2(subset$k[j]),
+                         y0=subset$k[j],
                          x1=subset$peptide_pos[j] + nchar(as.character(gsub( " *\\(.*?\\) *", "", subset$Peptide[j]))),
-                         y1=log2(subset$k[j]),
+                         y1=subset$k[j],
                          lwd=5, col=color)
                 }
         }

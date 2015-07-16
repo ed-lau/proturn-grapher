@@ -23,7 +23,7 @@ annotation.location <- "~/Documents/Ping Lab/Heavy Water/ProTurn Output/Annotati
 setwd(home_directory)
 annot <- read.csv(file=annotation.location)
 
-oput <- paste("Uniprot","GN","PN","# Peptides", "DP", "Refitted k", "Refitted dk", "Refitted R2", sep = "\t")
+oput <- paste("Uniprot","GN","PN","Peptides", "DP", "Refitted_k", "Refitted_dk", "Refitted_R2", sep = "\t")
 write(oput, file=output_file, append=T)
 
 pdf(file="Proturn_Combined_fit.pdf")

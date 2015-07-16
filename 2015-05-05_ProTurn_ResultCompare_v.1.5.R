@@ -303,7 +303,7 @@ dev.off()
 ########################################
 
 ################ PEPTIDE COMPARISON OUTPUT ####################
-
+#peptide.output <- data.frame()
 # Preparing the output file..
 peptide_summary <- paste(
         "Protein name", "GN", "PN", "Protein length",
@@ -428,7 +428,14 @@ for (i in 1:nrow(protein.list)) {
                                                 common.peptides$k.1[j],common.peptides$k.2[j],
                                                 common.peptides$ratio[j], welch.t$p.value,
                                                 sep = "\t")
+                        
+                        peptide_summary_table <- c(protein.list[i], GN, PN, common.peptides$protein_length.1[j],
+                        common.peptides$Peptide.1[j],common.peptides$z.1[j], common.peptides$peptide_pos.1[j],
+                        common.peptides$k.1[j],common.peptides$k.2[j],
+                        common.peptides$ratio[j], welch.t$p.value)
+                        
                         write(peptide_summary, file=peptide_comparison_output, append=T)
+                        #peptide.output <- rbind(peptide.output, peptide_summary)
                  }
                 }
         }
