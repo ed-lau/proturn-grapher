@@ -16,10 +16,11 @@
 #home_directory <- "~/Documents/Ping Lab/Project Files/2015 Isoform Turnover/" # Working directory. Need back slach "/" at the end
 home_directory <- "~/Documents/Ping Lab/Project Files/2015 Paraquat Turnover/" # Working directory. Need back slach "/" at the end
 
+
 #dataset1.directory <- "Data/ctrl/ctrl mouse heart cyto/"                              # The Proturn grapher output file for dataset 1, e.g., control hearts
 #dataset2.directory <- "Data/ctrl/ctrl mouse heart mito/"                              # The Proturn grapher output file for dataset 2, e.g., iso hearts
-dataset1.directory <- "Data/5. Vehicle Cyto/"                              # The Proturn grapher output file for dataset 1, e.g., control hearts
-dataset2.directory <- "Data/6. Paraquat Cyto/"                              # The Proturn grapher output file for dataset 2, e.g., iso hearts
+dataset1.directory <- "Data/3. MitoTEMPO Mito/"                              # The Proturn grapher output file for dataset 1, e.g., control hearts
+dataset2.directory <- "Data/4. Tempol Mito/"                              # The Proturn grapher output file for dataset 2, e.g., iso hearts
 
 
 
@@ -320,12 +321,12 @@ for (i in 1:nrow(protein.list)) {
                 # Subset out the list of common peptides from subset.output.2
                 common.peptides.2 <- subset.output.2[ which(subset.output.2$concat %in% subset.output.2$concat), ]
                 common.peptides.2 <- common.peptides.2[order(common.peptides.2$concat),]
-       
+        
         
         # Create an empty plot
         plot(-2, -2, xlab="Time", ylab="FS", ylim=c(-0.1,1.1), xlim=c(0,15), cex=0.8, cex.axis=0.6, cex.lab=0.6, pch=16, ps=28, lwd=2, lty=1, mgp=c(1.55,0.48,0), las=1)
         mtext(protein.list[i],side = 3, line = 0.5, cex=0.4);
-        }
+        
         # Plot the turnover graphs (kinetic curve and data points for file 1 and file 2) for comparison
         
         # For file 1:
@@ -359,13 +360,9 @@ for (i in 1:nrow(protein.list)) {
                         points(hl.data.peptide.subset$t,hl.data.peptide.subset$FS, col="blue", ylim=c(-0.1,1.1), xlim=c(0,15), cex=0.8)
                 }
         }
-        
+        }
         
 }
 # Close graphical stream
 dev.off()
 
-########################################
-
-require(ggplot2)
-qplot(ratio, data = protein.output)
